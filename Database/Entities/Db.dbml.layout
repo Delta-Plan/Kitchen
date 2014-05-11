@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Db">
+  <DataContextMoniker Name="/DbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="bd03de14-a855-40e2-8507-04dfc5fede8b" absoluteBounds="0.75, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DbDataContext/Recipe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32bb0799-0159-4068-801e-6416f523679c" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b5d571dc-3f61-4fb1-8c09-99eb77931921" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DbDataContext/UsersToRecipesRelation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9d7c78f-acbe-42b8-a0e2-3eab18ded3f2" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9d97abfd-abed-473d-9838-96064091bd7b" absoluteBounds="0.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DbDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2bdd2062-6a7e-440b-b3ca-03b527bbc162" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="998aee17-a335-42c8-9a17-6a467b56ba25" absoluteBounds="3.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DbDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6073eb50-2b5e-4e79-9a3e-9725041d12e4" absoluteBounds="3.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
