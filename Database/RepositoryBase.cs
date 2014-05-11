@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Linq;
 using System.Linq;
 using System.Linq.Expressions;
@@ -10,7 +11,7 @@ namespace Database
         where T : Entity
         where DbT : class, IDbEntity, new()
     {
-        protected readonly DbDataContext context = new DbDataContext();
+        protected readonly DbDataContext context = new DbDataContext(ConfigurationManager.ConnectionStrings["KitchenConnectionString"].ConnectionString);
 
         public IQueryable<T> GetAll()
         {
