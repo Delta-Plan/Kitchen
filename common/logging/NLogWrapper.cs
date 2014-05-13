@@ -16,6 +16,7 @@ namespace common.logging
 
         void _nLogLogger_LoggerReconfigured(object sender, EventArgs e)
         {
+            _nLogLogger.Info("LoggerReconfigured");//todo s.rozhin AddMoreInfo
             _nLogLogger = LogManager.GetCurrentClassLogger();
         }
 
