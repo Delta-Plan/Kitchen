@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen", "Kitchen\Kitchen.csproj", "{020236F4-E020-4A55-8C9A-57F28044E640}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A0B1A85-AA03-41AF-B77A-98194AFE3506} = {7A0B1A85-AA03-41AF-B77A-98194AFE3506}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "common\common.csproj", "{7A0B1A85-AA03-41AF-B77A-98194AFE3506}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +18,10 @@ Global
 		{020236F4-E020-4A55-8C9A-57F28044E640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{020236F4-E020-4A55-8C9A-57F28044E640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{020236F4-E020-4A55-8C9A-57F28044E640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0B1A85-AA03-41AF-B77A-98194AFE3506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0B1A85-AA03-41AF-B77A-98194AFE3506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0B1A85-AA03-41AF-B77A-98194AFE3506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0B1A85-AA03-41AF-B77A-98194AFE3506}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
