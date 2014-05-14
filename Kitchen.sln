@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "common\common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{35576888-1F3C-42FA-9C76-6AC95DE7BA2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{FE0C3A1A-0AAA-4362-8140-16FF0C90B598}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{35576888-1F3C-42FA-9C76-6AC95DE7BA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35576888-1F3C-42FA-9C76-6AC95DE7BA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35576888-1F3C-42FA-9C76-6AC95DE7BA2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE0C3A1A-0AAA-4362-8140-16FF0C90B598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0C3A1A-0AAA-4362-8140-16FF0C90B598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0C3A1A-0AAA-4362-8140-16FF0C90B598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0C3A1A-0AAA-4362-8140-16FF0C90B598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
