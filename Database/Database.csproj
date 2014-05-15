@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="IRecipe.cs" />
+    <Compile Include="BaseRecipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeReader.cs" />
     <Compile Include="SimpleRecipe.cs" />
