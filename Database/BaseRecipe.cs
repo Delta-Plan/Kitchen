@@ -1,9 +1,15 @@
-﻿namespace Database
+﻿
+using System.Data.Linq.Mapping;
+
+namespace Database
 {
+    [Table(Name = "Recipes")]
     public abstract class BaseRecipe
     {
-        public int Id;
-        public string Name;
-        public string Description;
+        [Column(IsPrimaryKey = true)] public int Id;
+
+        [Column] public string Name;
+
+        [Column] public string Description;
     }
 }
