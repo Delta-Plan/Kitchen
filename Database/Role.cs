@@ -1,10 +1,14 @@
-﻿using Database.Entities;
+﻿using System.Data.Linq.Mapping;
 
 namespace Database
 {
-    public class Role : Entity
+    [Table(Name = "Roles")]
+    public class Role
     {
-        public string ShortName { get; set; }
-        public string Descriprion { get; set; }
+        [Column(IsPrimaryKey = true)] public int Id;
+
+        [Column] public string ShortName;
+
+        [Column] public string Desctiption;
     }
 }

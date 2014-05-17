@@ -1,10 +1,19 @@
-﻿using Database.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Linq.Mapping;
 
 namespace Database
 {
-    public class User : Entity
+    [Table(Name="Users")]
+    public class User
     {
-        public string Name { get; set; }
-        public int RoleId { get; set; }
+        [Column(IsPrimaryKey = true)] public int Id;
+
+        [Column] public string Name;
+
+        [Column] public int RoleId;
     }
 }
