@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Singleton\GenericSingleton.cs" />
+    <Compile Include="Singleton\ISingleton.cs" />
     <Compile Include="logging\ILogger.cs" />
     <Compile Include="logging\NLogWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

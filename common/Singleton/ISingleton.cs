@@ -7,11 +7,8 @@ using common.logging;
 
 namespace common.Singleton
 {
-    public class GenericSingleton
+    public interface ISingleton<out T> where T : class
     {
-        public T Instance<T>(ILogger logger)
-        {
-            return default(T);
-        }
+        T CreateInstance(ILogger logger);
     }
 }
