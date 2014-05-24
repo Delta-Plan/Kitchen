@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInitableFromString.cs" />
     <Compile Include="Singleton\ISingleton.cs" />
     <Compile Include="logging\ILogger.cs" />
     <Compile Include="logging\NLogWrapper.cs" />

@@ -4,10 +4,11 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using common.logging;
 
 namespace Database.baseAccessors
 {
-    class EntityAccessor<T> where T : BaseEntity
+    class EntityAccessor<T> where T : IBaseEntity
     {
         public T GetById(int Id)
         {
@@ -17,11 +18,12 @@ namespace Database.baseAccessors
         }
     }
 
-    public class BaseEntity//todo S.rozhin check for internal
+    public interface IBaseEntity//todo S.rozhin check for internal
     {
-        public int Id { get; protected set; }
+        int OwnerId { get;}
+        bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false);
+        bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false);
 
-    
-    
+
     }
 }
