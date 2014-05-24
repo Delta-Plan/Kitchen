@@ -11,7 +11,7 @@ namespace Database.baseAccessors
     {
         public T GetById(int Id)
         {
-            DataContext a;//from singleton
+            DataContext a = null;//from singleton
             a.ExecuteQuery<T>("select top 1 * from Recipe where Id=@p0", Id);
             throw new NotImplementedException();
         }
