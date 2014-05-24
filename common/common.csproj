@@ -45,6 +45,7 @@
     <Compile Include="logging\ILogger.cs" />
     <Compile Include="logging\NLogWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Singleton\GenericSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
