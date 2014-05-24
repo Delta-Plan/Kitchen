@@ -8,11 +8,12 @@ using common.logging;
 
 namespace Database.Ingredients
 {
-    public class RecipieIngridients : IInitableFromString 
+    public class RecipieIngridients : IInitableFromString
     {
+        private IList<Component> _components;
         public bool InitFromString(string str, ILogger logger)
         {
-                
+            throw new NotImplementedException();
         }
 
         public string SerialiseToString(string str, ILogger logger)

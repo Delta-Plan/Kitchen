@@ -20,7 +20,7 @@ namespace Database.baseAccessors
 
     public interface IBaseEntity//todo S.rozhin check for internal
     {
-        int OwnerId { get;}
+        int Id { get;}
         bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false);
         bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false);
 

@@ -12,9 +12,9 @@ namespace Database
     public class KitchenDataContext : DataContext, ISingleton<KitchenDataContext>
     {
         private ILogger _logger;
-        private KitchenDataContext _kitchenDataContext;
+        private static KitchenDataContext _kitchenDataContext;
 
-        private string DefaultConnectionString
+        private static  string DefaultConnectionString
         {
             get
             {
@@ -25,21 +25,26 @@ namespace Database
         private KitchenDataContext(string connectionString)
             :base(connectionString)
         {
-            
+
         }
 
-        public KitchenDataContext CreateInstance(ILogger logger)
+        public static KitchenDataContext CreateInstance(ILogger logger)
         {
-            CreateInstance(logger, DefaultConnectionString);
+            return CreateInstance(logger, DefaultConnectionString);
         }
 
-        public KitchenDataContext CreateInstance(ILogger logger, string connectionString)
+        public static KitchenDataContext CreateInstance(ILogger logger, string connectionString)
         {
-            _logger = logger;
+            //_logger = logger;
             if(_kitchenDataContext == null)
                 _kitchenDataContext = new KitchenDataContext(connectionString);
+            return _kitchenDataContext;
         }
 
-        
+
+        KitchenDataContext ISingleton<KitchenDataContext>.CreateInstance(ILogger logger)
+        {
+            return CreateInstance(logger);
+        }
     }
 }

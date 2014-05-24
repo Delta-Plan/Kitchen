@@ -12,7 +12,6 @@ namespace Database
         private static readonly SimpleRecipe TestRecipe = new SimpleRecipe()
         {
             Description = "Description",
-            Id = 0,
             Name = "Name"
         };
     }

@@ -12,8 +12,8 @@ namespace Database
     [Table(Name = "Recipes")]
     public abstract class BaseRecipe: IBaseEntity
     {
-        [Column(IsPrimaryKey = true,IsDbGenerated = true)]
-        public int Id;
+        [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)]
+        private int _id;
 
         [Column]
         public string Name;
@@ -39,10 +39,15 @@ namespace Database
                 }
                 return _recipieIngridients;
             }
-            protected set { throw new NotImplementedException(); }
+            set { _recipieIngridients = value; }
         }
 
         public int OwnerId { get; private set; }
+
+        public int Id
+        {
+            get { return _id; }
+        }
 
         public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
@@ -58,7 +63,7 @@ namespace Database
 
         public bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
-            if (OwnerId!=userId)
+            if (OwnerId != userId)
             {
                 log.Warn("Trying to delete recipie not by owner");
                 return false;
