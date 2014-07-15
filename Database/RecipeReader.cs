@@ -1,4 +1,6 @@
-﻿using common.logging;
+﻿using System.Collections.Generic;
+using Database.Ingredients;
+using common.logging;
 
 namespace Database
 {
@@ -11,8 +13,20 @@ namespace Database
         }
         private static readonly SimpleRecipe TestRecipe = new SimpleRecipe()
         {
-            Description = "Description",
-            Name = "Name"
+            Description = "Чёрный хлеб пропитать подсолнечным маслом, затем посолить. Сверху потереть пальчиком. Добавить перец по вкусу.",
+            Name = "Чёрный хлебушек с маслом",
+            Ingridients = new RecipieIngridients()
+                {
+                    Components = new List<Component>()
+                        {
+                            new Component() { Ammount = 1,
+                                Ingridient = new Ingridient()
+                                    {
+                                        Description = "Румяный, с хрустящей корочкой..", Name = "Чёрный хлеб"
+                                    },
+                                    Measurement = MeasureType.Item }
+                        }
+                }
         };
     }
 }
