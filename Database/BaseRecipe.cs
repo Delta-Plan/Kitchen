@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
@@ -10,11 +9,8 @@ using common.logging;
 namespace Database
 {
     [Table(Name = "Recipes")]
-    public abstract class BaseRecipe: IBaseEntity
+    public abstract class BaseRecipe: BaseEntity<BaseRecipe>
     {
-        [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)]
-        private int _id;
-
         [Column]
         public string Name;
 
@@ -24,8 +20,10 @@ namespace Database
         [Column(Name = "IngridientsJson")]
         private string _ingridientsJson;
 
-        [Column(Name = "Deleted")]
-        private bool _isDeleted;
+        protected override BaseRecipe GetRef()
+        {
+            return this;
+        }
 
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients
@@ -41,39 +39,6 @@ namespace Database
             }
             set { _recipieIngridients = value; }
         }
-
         public int OwnerId { get; private set; }
-
-        public int Id
-        {
-            get { return _id; }
-        }
-
-        public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
-        {
-            var table = dc.GetTable<BaseRecipe>();
-            //todo existing entity check
-            table.InsertOnSubmit(this);
-            if (doSubmit)
-            {
-                dc.SubmitChanges(ConflictMode.FailOnFirstConflict);
-            }
-            return true;
-        }
-
-        public bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false)
-        {
-            if (OwnerId != userId)
-            {
-                log.Warn("Trying to delete recipie not by owner");
-                return false;
-            }
-            _isDeleted = true;
-            if (doSubmit)
-            {
-                dc.SubmitChanges();
-            }
-            return true;
-        }
     }
 }

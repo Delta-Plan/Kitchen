@@ -10,7 +10,7 @@ namespace Database.Ingredients
 {
     public class RecipieIngridients : IInitableFromString
     {
-        private IList<Component> _components;
+        public IList<Component> Components;
         public bool InitFromString(string str, ILogger logger)
         {
             throw new NotImplementedException();
@@ -20,6 +20,7 @@ namespace Database.Ingredients
         {
             throw new NotImplementedException();
         }
+        public RecipieIngridients(){}
         public RecipieIngridients(string str)
         {
             throw new NotImplementedException();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,39 @@ namespace Database.baseAccessors
         int Id { get;}
         bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false);
         bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false);
+    }
 
+    public abstract class BaseEntity<T> : IBaseEntity where T : class
+    {
+        [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)]
+        protected int _id;
+        
+        [Column(Name = "Deleted")]
+        private bool _isDeleted;
 
+        protected abstract T GetRef();
+        public int Id {get { return _id; } }
+
+        public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
+        {
+            var table = dc.GetTable<T>();
+            //todo existing entity check
+            table.InsertOnSubmit(GetRef());
+            if (doSubmit)
+            {
+                dc.SubmitChanges(ConflictMode.FailOnFirstConflict);
+            }
+            return true;
+        }
+
+        public bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false)
+        {
+            _isDeleted = true;
+            if (doSubmit)
+            {
+                dc.SubmitChanges();
+            }
+            return true;
+        }
     }
 }
