@@ -4,7 +4,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using common.logging;
+using common.Logging;
 using Database;
 using NUnit.Framework;
 

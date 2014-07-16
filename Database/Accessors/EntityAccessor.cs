@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using common.logging;
+using common.Logging;
 
 namespace Database.Accessors
 {
@@ -13,7 +13,8 @@ namespace Database.Accessors
     {
         public T GetById(int Id)
         {
-            DataContext a = KitchenDataContext.CreateInstance(null, ConnectionStringHelper.GetConString());//from singleton
+            DataContext a = KitchenDataContext.CreateInstance(null,
+                ConnectionStringHelper.GetConString(NLogWrapper.GetNLogWrapper()));
             a.ExecuteQuery<T>("select top 1 * from Recipe where Id=@p0", Id);
             throw new NotImplementedException();
         }
