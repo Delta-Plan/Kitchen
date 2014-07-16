@@ -13,7 +13,7 @@ namespace Database.Accessors
     {
         public T GetById(int Id)
         {
-            DataContext a = null;//from singleton
+            DataContext a = KitchenDataContext.CreateInstance(null, ConnectionStringHelper.GetConString());//from singleton
             a.ExecuteQuery<T>("select top 1 * from Recipe where Id=@p0", Id);
             throw new NotImplementedException();
         }

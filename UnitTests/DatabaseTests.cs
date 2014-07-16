@@ -31,14 +31,9 @@ namespace UnitTests
         [Test]
         public void SetupTest()
         {
-            var dataContext = KitchenDataContext.CreateInstance(Logger, GetConnectionString("Ivan_db"));
+            var dataContext = KitchenDataContext.CreateInstance(Logger, ConnectionStringHelper.GetConString("Ivan_db"));
             var roles = dataContext.GetTable<Role>().ToList();
             Assert.True(roles.Count > 0);
-        }
-
-        private string GetConnectionString(string index)
-        {
-            return ConfigurationManager.ConnectionStrings[index].ConnectionString;
         }
     }
 }

@@ -43,13 +43,14 @@
   <ItemGroup>
     <Compile Include="Accessors\EntityAccessor.cs" />
     <Compile Include="BaseRecipe.cs" />
+    <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="Ingredients\Component.cs" />
     <Compile Include="Ingredients\IComponent.cs" />
     <Compile Include="Ingredients\MeasureType.cs" />
     <Compile Include="Ingredients\RecipieIngridients.cs" />
     <Compile Include="KitchenDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Accessors\RecipeReader.cs" />
+    <Compile Include="Accessors\RecipeAccessor.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SimpleRecipe.cs" />
     <Compile Include="User.cs" />
