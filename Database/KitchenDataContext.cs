@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Linq;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using common.logging;
-using common.Singleton;
 
 namespace Database
 {
@@ -25,14 +20,14 @@ namespace Database
         public static KitchenDataContext CreateInstance(ILogger logger, string connectionString)
         {
             if(_kitchenDataContext == null)
-                //lock (SyncRoot)
                 {
-                    Logger = logger;
-                    if (_kitchenDataContext == null)
-                    {
-                        AssertConnectionString(ref connectionString);
-                        _kitchenDataContext = new KitchenDataContext(connectionString);
-                    }
+                    lock(SyncRoot)
+                        if (_kitchenDataContext == null)
+                        {
+                            Logger = logger;
+                            AssertConnectionString(ref connectionString);
+                            _kitchenDataContext = new KitchenDataContext(connectionString);
+                        }
                 }
             return _kitchenDataContext;
         }
