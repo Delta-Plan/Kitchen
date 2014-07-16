@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Database;
+using Database.Accessors;
 
 namespace Kitchen.Controllers
 {
@@ -15,7 +16,7 @@ namespace Kitchen.Controllers
         public ActionResult Index(int id=0)
         {
             var logger = common.logging.NLogWrapper.GetNLogWrapper();
-            var readed = RecipeReader.GetRecipie(id, logger);
+            var readed = RecipeAccessor.GetRecipie(id, logger);
             return View(readed);
         }
 

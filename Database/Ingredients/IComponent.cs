@@ -1,6 +1,6 @@
 ﻿using System.Data.Linq;
 using System.Data.Linq.Mapping;
-using Database.baseAccessors;
+using Database.Accessors;
 using common.logging;
 
 namespace Database.Ingredients
