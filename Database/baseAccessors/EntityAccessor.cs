@@ -37,6 +37,7 @@ namespace Database.baseAccessors
         protected abstract T GetRef();
         public int Id {get { return _id; } }
 
+        [Obsolete("будет унесено в аксессоры")]
         public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
             var table = dc.GetTable<T>();
@@ -49,6 +50,7 @@ namespace Database.baseAccessors
             return true;
         }
 
+        [Obsolete("будет унесено в аксессоры")]
         public bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
             _isDeleted = true;
