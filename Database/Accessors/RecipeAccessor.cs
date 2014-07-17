@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Database.Ingredients;
 using common.logging;
+using Database.Ingredients;
 
-namespace Database
+namespace Database.Accessors
 {
-    public class RecipeReader
+    public class RecipeAccessor
     {
         public static BaseRecipe GetRecipie(int recipieId, ILogger logger)
         {

@@ -1,6 +1,10 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Linq;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using common.logging;
 using Database;
 using NUnit.Framework;
 
@@ -10,43 +14,26 @@ namespace UnitTests
     public class DatabaseTests
     {
         private int TestUserId;
+        private ILogger Logger;
 
         [SetUp]
         public void CommonSetUp()
         {
-            using (var dc = new DataContext(GetConnectionString("Ivan_db")))
-            {
-                var users = dc.GetTable<User>();
-                var u = new User();
-                u.Name = "TestUser";
-                u.RoleId = 0;
-                users.InsertOnSubmit(u);
-                TestUserId = u.Id;
-                dc.SubmitChanges();
-            }
+            Logger = NLogWrapper.GetNLogWrapper();
         }
 
         [TearDown]
         public void CommonTearDown()
         {
-            using (var dc = new DataContext(GetConnectionString("Ivan_db")))
-            {
-                var users = dc.GetTable<User>();
-                var u = users.SingleOrDefault(_ => _.Id == TestUserId);
-                users.DeleteOnSubmit(u);
-                dc.SubmitChanges();
-            }
+            
         }
 
         [Test]
         public void SetupTest()
         {
-            using (var dc = new DataContext(GetConnectionString("Ivan_db")))
-            {
-                var users = dc.GetTable<User>();
-                var u = users.SingleOrDefault(_ => _.Id == TestUserId);
-                Assert.NotNull(u);
-            }
+            var dataContext = KitchenDataContext.CreateInstance(Logger, GetConnectionString("Ivan_db"));
+            var roles = dataContext.GetTable<Role>().ToList();
+            Assert.True(roles.Count > 0);
         }
 
         private string GetConnectionString(string index)

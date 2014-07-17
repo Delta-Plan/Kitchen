@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using common.logging;
 
-namespace Database.baseAccessors
+namespace Database.Accessors
 {
     class EntityAccessor<T> where T : IBaseEntity
     {
@@ -36,7 +36,8 @@ namespace Database.baseAccessors
 
         protected abstract T GetRef();
         public int Id {get { return _id; } }
-
+        
+        [Obsolete("будет унесено в аксессоры")]
         public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
             var table = dc.GetTable<T>();
@@ -49,6 +50,7 @@ namespace Database.baseAccessors
             return true;
         }
 
+        [Obsolete("будет унесено в аксессоры")]
         public bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
             _isDeleted = true;

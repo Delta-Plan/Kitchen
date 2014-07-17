@@ -5,10 +5,13 @@ namespace Database
     [Table(Name = "Roles")]
     public class Role
     {
-        [Column(IsPrimaryKey = true)] public int Id;
+        [Column(IsPrimaryKey = true)] 
+        public int Id;
 
-        [Column] public string ShortName;
+        [Column] 
+        public string Name;
 
-        [Column] public string Desctiption;
+        [Column] 
+        public string Description;
     }
 }

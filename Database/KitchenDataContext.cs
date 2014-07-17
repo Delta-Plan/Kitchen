@@ -1,50 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Linq;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using common.logging;
-using common.Singleton;
 
 namespace Database
 {
-    public class KitchenDataContext : DataContext, ISingleton<KitchenDataContext>
+    public class KitchenDataContext : DataContext
     {
-        private ILogger _logger;
-        private static KitchenDataContext _kitchenDataContext;
-
-        private static  string DefaultConnectionString
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        private static volatile KitchenDataContext _kitchenDataContext;
+        private static readonly object SyncRoot = new object();
+        private static ILogger Logger;
 
         private KitchenDataContext(string connectionString)
             :base(connectionString)
         {
-
-        }
-
-        public static KitchenDataContext CreateInstance(ILogger logger)
-        {
-            return CreateInstance(logger, DefaultConnectionString);
+            
         }
 
         public static KitchenDataContext CreateInstance(ILogger logger, string connectionString)
         {
-            //_logger = logger;
             if(_kitchenDataContext == null)
-                _kitchenDataContext = new KitchenDataContext(connectionString);
+                {
+                    lock(SyncRoot)
+                        if (_kitchenDataContext == null)
+                        {
+                            Logger = logger;
+                            AssertConnectionString(ref connectionString);
+                            _kitchenDataContext = new KitchenDataContext(connectionString);
+                        }
+                }
             return _kitchenDataContext;
         }
 
-
-        KitchenDataContext ISingleton<KitchenDataContext>.CreateInstance(ILogger logger)
+        private static void AssertConnectionString(ref string connectionString)
         {
-            return CreateInstance(logger);
+            if (String.IsNullOrEmpty(connectionString))
+            {
+                Logger.Warn(String.Format("Wrong connection string: \"{0}\"", connectionString));
+                connectionString = DefaultConnectionString();
+            }
+            //todo try to connect
+        }
+
+        private static string DefaultConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings["KitchenConnectionString"].ConnectionString;
         }
     }
 }
