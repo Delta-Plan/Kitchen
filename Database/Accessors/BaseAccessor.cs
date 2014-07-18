@@ -10,7 +10,7 @@ using Database.Abstracts;
 
 namespace Database.Accessors
 {
-    public class EntityAccessor<T> : SingletonBase<EntityAccessor<T>> where T : IBaseEntity
+    public class BaseAccessor<T> : SingletonBase<BaseAccessor<T>> where T : IBaseEntity
     {
         public T SelectById(int Id)
         {

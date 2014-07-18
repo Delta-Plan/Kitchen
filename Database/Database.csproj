@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Abstracts\BaseEntity.cs" />
     <Compile Include="Abstracts\IBaseEntity.cs" />
-    <Compile Include="Accessors\EntityAccessor.cs" />
+    <Compile Include="Accessors\BaseAccessor.cs" />
     <Compile Include="BaseRecipe.cs" />
     <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="Ingredients\Component.cs" />
