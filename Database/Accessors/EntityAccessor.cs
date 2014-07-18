@@ -12,12 +12,17 @@ namespace Database.Accessors
 {
     public class EntityAccessor<T> : SingletonBase<EntityAccessor<T>> where T : IBaseEntity
     {
-        public T GetById(int Id)
+        public T SelectById(int Id)
         {
             DataContext a = KitchenDataContext.CreateInstance(null,
                 ConnectionStringHelper.GetConString(NLogWrapper.GetNLogWrapper()));
             a.ExecuteQuery<T>("select top 1 * from Recipe where Id=@p0", Id);
             throw new NotImplementedException();
         }
+
+        public List<T> SelectAll()
+        {
+            throw new NotImplementedException();
+        } 
     }
 }
