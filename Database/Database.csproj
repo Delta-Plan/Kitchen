@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\BaseEntity.cs" />
+    <Compile Include="Abstracts\IBaseEntity.cs" />
     <Compile Include="Accessors\EntityAccessor.cs" />
     <Compile Include="BaseRecipe.cs" />
     <Compile Include="ConnectionStringHelper.cs" />

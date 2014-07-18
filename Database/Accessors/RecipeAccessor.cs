@@ -4,7 +4,7 @@ using Database.Ingredients;
 
 namespace Database.Accessors
 {
-    public class RecipeAccessor
+    public class RecipeAccessor : EntityAccessor<BaseRecipe>
     {
         public static BaseRecipe GetRecipie(int recipieId, ILogger logger)
         {

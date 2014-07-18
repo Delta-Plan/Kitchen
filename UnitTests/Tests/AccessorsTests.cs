@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using common.Logging;
 using Database;
+using Database.Accessors;
 using NUnit.Framework;
 
 namespace UnitTests.Tests
@@ -31,6 +32,12 @@ namespace UnitTests.Tests
             Assert.True(roles.Count > 0);
         }
 
+        [Test]
+        public void RecipeAccessorTest()
+        {
+            var ra = RecipeAccessor.Instance;
+            // todo I.Shlykov
+        }
 
     }
 }
