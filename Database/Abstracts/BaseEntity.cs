@@ -13,9 +13,15 @@ namespace Database.Abstracts
         [Column(Name = "Deleted")]
         private bool _isDeleted;
 
-        protected abstract T GetRef();
         public int Id {get { return _id; } }
-        
+
+        public bool IsDeleted
+        {
+            get { return _isDeleted; }
+        }
+
+        protected abstract T GetRef();
+
         [Obsolete("будет унесено в аксессоры")]
         public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {
