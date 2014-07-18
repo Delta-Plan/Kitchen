@@ -49,7 +49,7 @@
     <Compile Include="Ingredients\RecipieIngridients.cs" />
     <Compile Include="KitchenDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Accessors\RecipeReader.cs" />
+    <Compile Include="Accessors\RecipeAccessor.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SimpleRecipe.cs" />
     <Compile Include="User.cs" />
