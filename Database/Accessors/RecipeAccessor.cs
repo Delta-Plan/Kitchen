@@ -11,6 +11,7 @@ namespace Database.Accessors
             logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
             return TestRecipe;
         }
+
         private static readonly SimpleRecipe TestRecipe = new SimpleRecipe()
         {
             Description = "Чёрный хлеб пропитать подсолнечным маслом, затем посолить. Сверху потереть пальчиком. Добавить перец по вкусу.",
