@@ -36,17 +36,17 @@ namespace Kitchen.Controllers
         // POST: /Recipes/Create
 
         [HttpPost]
-        public ActionResult Create(BaseRecipe collection)
+        public ActionResult Create(BaseRecipe recipe)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                var toSubmit = recipe;
                 return Content("Рецепт успешно сохранён в книге");//RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return Content("Не удалось сохранить рецепт");
             }
         }
 
