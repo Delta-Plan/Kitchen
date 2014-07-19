@@ -4,7 +4,24 @@
 }
 
 <h2 style="text-align: center;">Поиск по рецептам</h2>
-<div style="text-align: left">
+<div style="text-align: left; float: left">
     <a href="@Url.Action("Index", "Recipes",2)">Рецепт дня</a>
     @*@Html.ActionLink("Пользователи",  "Index", "Recipes")*@
+</div>
+<div style="margin: auto; border: 3px solid burlywood; float: right">
+    <h2>Свежие рецепты</h2>
+    <p>
+        <a href="@Url.Action("Create", "Recipes")">Добавить свой</a>
+    </p>
+    @foreach (var recipe in ViewBag.Entries)
+    {
+        <section>
+            <header>
+                <h3 style="text-align: left; position: inherit">@recipe.Name</h3>
+            </header>
+            <p>
+                @recipe.Description
+            </p>
+        </section>
+        }
 </div>

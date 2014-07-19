@@ -12,6 +12,17 @@ namespace Database.Accessors
             return TestRecipe;
         }
 
+        public IList<BaseRecipe> LastUpdated(int count)
+        {
+            var list = new List<BaseRecipe>(count);
+            for (int c = 0; c < count; c++)
+            {
+                list.Add(TestRecipe);
+            }
+            //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
+            return list;
+        }
+
         private static readonly SimpleRecipe TestRecipe = new SimpleRecipe()
         {
             Description = "Чёрный хлеб пропитать подсолнечным маслом, затем посолить. Сверху потереть пальчиком. Добавить перец по вкусу.",

@@ -41,7 +41,6 @@ namespace Kitchen.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 var toSubmit = new SimpleRecipe();
                 toSubmit.Name = data["Name"];
                 toSubmit.Description = data["Description"];
