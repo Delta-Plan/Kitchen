@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using common.Logging;
 using common.Singleton;
 using Database.Abstracts;
@@ -14,21 +12,17 @@ namespace Database.Accessors
     {
         protected ILogger DefaultLogger = NLogWrapper.GetNLogWrapper();
         //Todo DeltaPlan: logger frome method
-        public T SelectById(ILogger logger, int Id)
+        public virtual T SelectById(int Id)
         {
             DataContext a = KitchenDataContext.CreateInstance(null,
-                ConnectionStringHelper.GetConString(logger));
+                ConnectionStringHelper.GetConString(DefaultLogger));
             a.ExecuteQuery<T>("select top 1 * from Recipe where Id=@p0", Id);
             throw new NotImplementedException();
         }
 
-        public List<T> SelectAll()
+        public List<T> SelectAll()//типа сдёрни всё 1оо5оо записей с базы?
         {
-            return SelectAll(DefaultLogger);
-        }
-
-        public List<T> SelectAll(ILogger logger)
-        {
+            var logger = DefaultLogger;
             var conStr = ConnectionStringHelper.GetConString(logger);
             var db = KitchenDataContext.CreateInstance(logger, conStr);
             return db.GetTable<T>().ToList();

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
-using common.Logging;using System.Web.UI.WebControls;
-using Database;using Database.Accessors;
+using common.Logging;
+using Database;
+using Database.Accessors;
 
 namespace Kitchen.Controllers
 {
@@ -11,8 +12,8 @@ namespace Kitchen.Controllers
 
         public ActionResult Index(int id=0)
         {
-            ILogger logger = NLogWrapper.GetNLogWrapper();
-            var readed = RecipeAccessor.Instance.SelectById(logger, id);
+            var reader = new RecipeAccessor();
+            var readed = reader.SelectById(id);
             return View(readed);
         }
 
@@ -36,17 +37,19 @@ namespace Kitchen.Controllers
         // POST: /Recipes/Create
 
         [HttpPost]
-        public ActionResult Create(BaseRecipe collection)
+        public ActionResult Create(FormCollection data)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                var toSubmit = new SimpleRecipe();
+                toSubmit.Name = data["Name"];
+                toSubmit.Description = data["Description"];
+                RecipeAccessor.Instance.Insert(toSubmit);
                 return Content("Рецепт успешно сохранён в книге");//RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return Content("Не удалось сохранить рецепт");
             }
         }
 
