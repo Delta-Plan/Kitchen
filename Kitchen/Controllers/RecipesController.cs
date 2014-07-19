@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Database;
 using Database.Accessors;
 
@@ -40,13 +41,13 @@ namespace Kitchen.Controllers
         // POST: /Recipes/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BaseRecipe collection)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return Content("Рецепт успешно сохранён в книге");//RedirectToAction("Index");
             }
             catch
             {
