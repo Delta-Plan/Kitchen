@@ -13,7 +13,7 @@ namespace Database.Accessors
     public class BaseAccessor<T> : SingletonBase<BaseAccessor<T>> where T : class, IBaseEntity
     {
         protected ILogger DefaultLogger = NLogWrapper.GetNLogWrapper();
-
+        //Todo DeltaPlan: logger frome method
         public T SelectById(ILogger logger, int Id)
         {
             DataContext a = KitchenDataContext.CreateInstance(null,

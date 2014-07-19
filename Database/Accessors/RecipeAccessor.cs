@@ -6,9 +6,9 @@ namespace Database.Accessors
 {
     public class RecipeAccessor : BaseAccessor<BaseRecipe>
     {
-        public static BaseRecipe GetRecipie(int recipieId, ILogger logger)
+        public static BaseRecipe GetRecipie(int recipieId)
         {
-            logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
+            //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
             return TestRecipe;
         }
 

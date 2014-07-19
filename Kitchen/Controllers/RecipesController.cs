@@ -12,7 +12,7 @@ namespace Kitchen.Controllers
         public ActionResult Index(int id=0)
         {
             ILogger logger = NLogWrapper.GetNLogWrapper();
-            var readed = RecipeAccessor.GetRecipie(id, logger);
+            var readed = RecipeAccessor.Instance.SelectById(logger, id);
             return View(readed);
         }
 
