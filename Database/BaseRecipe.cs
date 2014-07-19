@@ -1,16 +1,16 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
+using Database.Abstracts;
+using Database.Accessors;
+using Database.Ingredients;
 
 namespace Database
 {
     [Table(Name = "Recipes")]
-    public abstract class BaseRecipe
+    public abstract class BaseRecipe: BaseEntity<BaseRecipe>
     {
-        [Column(IsPrimaryKey = true)]
-        public int Id;
-
         [Column]
         public string Name;
 
@@ -20,11 +20,25 @@ namespace Database
         [Column(Name = "IngridientsJson")]
         private string _ingridientsJson;
 
-
-        public Dictionary<int, string> Ingridients
+        protected override BaseRecipe GetRef()
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            return this;
         }
+
+        private RecipieIngridients _recipieIngridients;
+        public RecipieIngridients Ingridients
+        {
+            get
+            {
+                if (_recipieIngridients == null)
+                {
+                    _recipieIngridients = new RecipieIngridients(_ingridientsJson);
+                    return _recipieIngridients;
+                }
+                return _recipieIngridients;
+            }
+            set { _recipieIngridients = value; }
+        }
+        public int OwnerId { get; private set; }
     }
 }

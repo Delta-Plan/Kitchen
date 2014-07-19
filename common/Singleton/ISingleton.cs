@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using common.logging;
+using common.Logging;
 
 namespace common.Singleton
 {
-    public class GenericSingleton
+    public interface ISingleton<out T> where T : class
     {
-        public T Instance<T>(ILogger logger)
-        {
-            return default(T);
-        }
+        T CreateInstance(ILogger logger);
     }
 }

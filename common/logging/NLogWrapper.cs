@@ -1,7 +1,7 @@
 ﻿using System;
 using NLog;
 
-namespace common.logging
+namespace common.Logging
 {
     public class NLogWrapper : ILogger//todo s.rozhin
     {
