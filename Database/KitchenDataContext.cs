@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.Linq;
-using common.logging;
+using common.Logging;
 
 namespace Database
 {

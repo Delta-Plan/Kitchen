@@ -12,7 +12,6 @@ namespace common.Singleton
     /// <typeparam name="T">Class type of the singleton</typeparam>
     public abstract class SingletonBase<T> where T : class
     {
-        private static object _syncRoot = new object();
         #region Members
 
         /// <summary>

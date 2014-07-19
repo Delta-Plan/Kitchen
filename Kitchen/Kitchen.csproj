@@ -43,12 +43,6 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="common">
-      <HintPath>..\common\bin\Release\common.dll</HintPath>
-    </Reference>
-    <Reference Include="dotless.Core">
-      <HintPath>..\packages\dotless.1.4.0.0\lib\dotless.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -161,6 +155,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\common\common.csproj">
+      <Project>{7a0b1a85-aa03-41af-b77a-98194afe3506}</Project>
+      <Name>common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{35576888-1f3c-42fa-9c76-6ac95de7ba2d}</Project>
       <Name>Database</Name>

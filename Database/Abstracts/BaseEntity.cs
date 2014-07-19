@@ -1,31 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using common.logging;
+using common.Logging;
 
-namespace Database.Accessors
+namespace Database.Abstracts
 {
-    class EntityAccessor<T> where T : IBaseEntity
-    {
-        public T GetById(int Id)
-        {
-            DataContext a = null;//from singleton
-            a.ExecuteQuery<T>("select top 1 * from Recipe where Id=@p0", Id);
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface IBaseEntity//todo S.rozhin check for internal
-    {
-        int Id { get;}
-        bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false);
-        bool Delete(DataContext dc, int userId, ILogger log, bool doSubmit = false);
-    }
-
     public abstract class BaseEntity<T> : IBaseEntity where T : class
     {
         [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)]
@@ -34,9 +13,15 @@ namespace Database.Accessors
         [Column(Name = "Deleted")]
         private bool _isDeleted;
 
-        protected abstract T GetRef();
         public int Id {get { return _id; } }
-        
+
+        public bool IsDeleted
+        {
+            get { return _isDeleted; }
+        }
+
+        protected abstract T GetRef();
+
         [Obsolete("будет унесено в аксессоры")]
         public bool Save(DataContext dc, int userId, ILogger log, bool doSubmit = false)
         {

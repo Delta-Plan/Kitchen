@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using Database;
-using Database.Accessors;
+﻿using System.Web.Mvc;
+using common.Logging;using System.Web.UI.WebControls;
+using Database;using Database.Accessors;
 
 namespace Kitchen.Controllers
 {
@@ -16,7 +11,7 @@ namespace Kitchen.Controllers
 
         public ActionResult Index(int id=0)
         {
-            var logger = common.logging.NLogWrapper.GetNLogWrapper();
+            ILogger logger = NLogWrapper.GetNLogWrapper();
             var readed = RecipeAccessor.GetRecipie(id, logger);
             return View(readed);
         }
