@@ -3,22 +3,8 @@
 namespace UnitTests.Tests
 {
     [TestFixture]
-    public class CommonTests
+    public class CommonTests : BaseTest
     {
-        #region SetUp - TearDown
-        [SetUp]
-        public void CommonSetUp()
-        {
-            
-        }
-
-        [TearDown]
-        public void CommonTearDown()
-        {
-
-        }
-        #endregion
-
         [Test]
         public void SingletoneThreadSafeTest()
         {
