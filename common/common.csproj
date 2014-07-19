@@ -43,14 +43,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IInitableFromString.cs" />
-    <Compile Include="Singleton\ISingleton.cs" />
+    <Compile Include="Settings\ISettingsManager.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NLogWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\SettingsWrap.cs" />
     <Compile Include="Singleton\SingletonBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Settings\settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
