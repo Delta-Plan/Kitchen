@@ -13,46 +13,24 @@ namespace common.Settings
     public class SettingsManager : SingletonBase<SettingsManager>, ISettingsManager
     {
         private Dictionary<string, object> Settings;
-        private const string FileNameLocal = "\\Settings\\settings.xml";
 
         private SettingsManager()
         {
-            InitFromFile();
-        }
-
-        public string SettingsFileName
-        {
-            get
-            {
-                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-                var uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path) + FileNameLocal;
-            }
-        }
-
-        private void InitFromFile()
-        {
             Settings = new Dictionary<string, object>();
-            var serializer = new XmlSerializer(typeof (SettingsWrap));
-            var streamReader = new StreamReader(SettingsFileName);
-            streamReader.ReadToEnd();
-            var config = (SettingsWrap) serializer.Deserialize(streamReader);
-            //
-            Settings["ConnectionString"] = config.ConnectionString;
-        }
-
-        private void SaveToFile(string file)
-        {
-            var config = new SettingsWrap {ConnectionString = Settings["ConnectionString"].ToString()};
-            var serializer = new XmlSerializer(typeof (SettingsWrap));
-            var streamWriter = new StreamWriter(SettingsFileName);
-            serializer.Serialize(streamWriter, config);
+            var wrap = SettingsStock.GetSettings();
+            Settings["ConnectionString"] = wrap.ConnectionString;
         }
 
         public object GetSettingByKey(string key)
         {
-            return Settings[key];
+            object val;
+            Settings.TryGetValue(key, out val);
+            return val;
+        }
+
+        public void SetSettingByKey(string key, object o)
+        {
+            Settings[key] = o;
         }
 
         public object[] GetAllSettings()
@@ -67,7 +45,7 @@ namespace common.Settings
 
         public void Save()
         {
-            SaveToFile(SettingsFileName);
+            // todo
         }
     }
 }

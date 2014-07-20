@@ -15,8 +15,10 @@ namespace UnitTests.Tests
         [Test]
         public void XmlReadWriteTest()
         {
-            var settings = SettingsManager.Instance.SettingsFileName;
-            Assert.True(File.Exists(settings));
+            ISettingsManager manager = SettingsManager.Instance;
+            Assert.True(manager.GetAllKeys().Length > 0);
+            Assert.True(manager.GetAllSettings().Length > 0);
+            Assert.NotNull(manager.GetSettingByKey("ConnectionString"));
         }
     }
 }
