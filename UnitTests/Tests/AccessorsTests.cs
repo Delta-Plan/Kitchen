@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using common.Logging;
+using common.Settings;
 using Database;
 using Database.Accessors;
 using NUnit.Framework;
@@ -7,27 +8,15 @@ using NUnit.Framework;
 namespace UnitTests.Tests
 {
     [TestFixture]
-    public class AccessorsTests
+    public class AccessorsTests : BaseTest
     {
         private int TestUserId;
-        private ILogger Logger;
-
-        [SetUp]
-        public void CommonSetUp()
-        {
-            Logger = NLogWrapper.GetNLogWrapper();
-        }
-
-        [TearDown]
-        public void CommonTearDown()
-        {
-            
-        }
+        private ILogger Logger = NLogWrapper.GetNLogWrapper();
 
         [Test]
         public void SetupTest()
         {
-            var dataContext = KitchenDataContext.CreateInstance(Logger, ConnectionStringHelper.GetConString(Logger, "Ivan_db"));
+            var dataContext = KitchenDataContext.CreateInstance(Logger, SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
             var roles = dataContext.GetTable<Role>().ToList();
             Assert.True(roles.Count > 0);
         }
@@ -35,8 +24,15 @@ namespace UnitTests.Tests
         [Test]
         public void RecipeAccessorTest()
         {
-            var ra = RecipeAccessor.Instance;
-            // todo I.Shlykov
+            var recipe = new SimpleRecipe {Name = "чорный хлеб"};
+            RecipeAccessor.Instance.Insert(recipe);
+            var r = RecipeAccessor.Instance.SelectAll();
+            Assert.True(r.Count > 0);
+            var getted = r.Single(_ => _.Name.Equals(recipe.Name));
+            Assert.NotNull(getted);
+            RecipeAccessor.Instance.Delete(getted);
+            r = RecipeAccessor.Instance.SelectAll();
+            Assert.Null(r.Where(_ => _.Name.Equals(recipe.Name)));
         }
 
     }

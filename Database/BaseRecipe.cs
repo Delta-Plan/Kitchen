@@ -8,7 +8,7 @@ using Database.Ingredients;
 
 namespace Database
 {
-    [Table(Name = "Recipes")]
+    [Table(Name = "dbo.Recipes")]
     public abstract class BaseRecipe: BaseEntity<BaseRecipe>
     {
         [Column]
@@ -19,6 +19,9 @@ namespace Database
 
         [Column(Name = "IngridientsJson")]
         private string _ingridientsJson;
+
+        [Column]
+        public bool IsPublic;
 
         protected override BaseRecipe GetRef()
         {
@@ -39,6 +42,8 @@ namespace Database
             }
             set { _recipieIngridients = value; }
         }
+
+        [Column]
         public int OwnerId { get; private set; }
     }
 }

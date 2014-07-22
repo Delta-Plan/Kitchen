@@ -6,6 +6,6 @@ namespace Database.Abstracts
     public interface IBaseEntity//todo S.rozhin check for internal
     {
         int Id { get;}
-        bool IsDeleted { get; }
+        //bool IsDeleted { get; }
     }
 }
