@@ -13,11 +13,11 @@ namespace Database.Accessors
     {
         protected ILogger DefaultLogger = NLogWrapper.GetNLogWrapper();
 
-        public virtual T SelectById(int Id)
+        public virtual T SelectById(int id)
         {
             DataContext a = KitchenDataContext.CreateInstance(null,
                 SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            return (T) a.ExecuteQuery<T>("select top 1 * from Recipes where Id=@p0", Id);
+            return (T) a.ExecuteQuery<T>("select top 1 * from Recipes where Id=@p0", id);
         }
 
         public List<T> SelectAll()//типа сдёрни всё 1оо5оо записей с базы?

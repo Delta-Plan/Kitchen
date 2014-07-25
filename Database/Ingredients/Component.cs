@@ -2,7 +2,7 @@
 {
     public class Component
     {
-        public IIngridient Ingridient;
+        public IProductType ProductType;
         public float Ammount;
         public MeasureType Measurement;
     }

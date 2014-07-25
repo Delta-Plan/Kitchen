@@ -20,6 +20,5 @@ namespace Database.Abstracts
         //    get { return _isDeleted; }
         //}
 
-        protected abstract T GetRef();
     }
 }

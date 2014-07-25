@@ -6,7 +6,7 @@ namespace Database.Accessors
 {
     public class RecipeAccessor : BaseAccessor<BaseRecipe>
     {
-        public override BaseRecipe SelectById(int recipieId)
+        public override BaseRecipe SelectById(int id)
         {
             //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
             return TestRecipe;
@@ -32,7 +32,7 @@ namespace Database.Accessors
                     Components = new List<Component>()
                         {
                             new Component() { Ammount = 1,
-                                Ingridient = new Ingridient()
+                                ProductType = new ProductType()
                                     {
                                         Description = "Румяный, с хрустящей корочкой..", Name = "Чёрный хлеб"
                                     },
