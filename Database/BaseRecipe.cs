@@ -8,8 +8,9 @@ using Database.Ingredients;
 
 namespace Database
 {
+    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
     [Table(Name = "dbo.Recipes")]
-    public abstract class BaseRecipe: BaseEntity<BaseRecipe>
+    public class BaseRecipe: BaseEntity<BaseRecipe>
     {
         [Column]
         public string Name;
@@ -39,7 +40,9 @@ namespace Database
                 _ingridientsJson = value.SerialiseToJsonString();
             }
         }
-
+        [Column(IsDiscriminator = true, Name = "Disctiminator")]
+        public int? RecipeType { get; set; }
+        
         [Column]
         public int OwnerId { get; private set; }
     }

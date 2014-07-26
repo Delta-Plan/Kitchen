@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Database.Ingredients;
 
 namespace Database.Accessors
@@ -50,7 +51,7 @@ namespace Database.Accessors
                 DefaultLogger.Debug("Starting update product type cache");
                 var sw = new Stopwatch();
                 sw.Start();
-                var products = SelectAll();
+                var products = SelectAll().ToList();
                 var newCache = new Dictionary<int, ProductType>(products.Count);
                 foreach (var productType in products)
                 {

@@ -5,6 +5,7 @@ using common.Logging;
 
 namespace Database.Abstracts
 {
+    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = false, Code = 0)]
     public abstract class BaseEntity<T> : IBaseEntity where T : class
     {
         [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)]

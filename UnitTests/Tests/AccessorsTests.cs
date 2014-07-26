@@ -26,12 +26,12 @@ namespace UnitTests.Tests
         {
             var recipe = new SimpleRecipe {Name = "чорный хлеб"};
             RecipeAccessor.Instance.Insert(recipe);
-            var r = RecipeAccessor.Instance.SelectAll();
+            var r = RecipeAccessor.Instance.SelectAll().ToList();
             Assert.True(r.Count > 0);
             var getted = r.Single(_ => _.Name.Equals(recipe.Name));
             Assert.NotNull(getted);
             RecipeAccessor.Instance.Delete(getted);
-            r = RecipeAccessor.Instance.SelectAll();
+            r = RecipeAccessor.Instance.SelectAll().ToList();
             Assert.Null(r.Where(_ => _.Name.Equals(recipe.Name)));
         }
 

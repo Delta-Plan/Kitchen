@@ -20,12 +20,12 @@ namespace Database.Accessors
             return (T) a.ExecuteQuery<T>("select top 1 * from Recipes where Id=@p0", id);
         }
 
-        public List<T> SelectAll()//типа сдёрни всё 1оо5оо записей с базы?
+        public IQueryable<T> SelectAll()//типа сдёрни всё 1оо5оо записей с базы?
         {
             var logger = DefaultLogger;
             var conStr = SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString();
             var db = KitchenDataContext.CreateInstance(logger, conStr);
-            return db.GetTable<T>().ToList();
+            return db.GetTable<T>();
         }
 
         public void Insert(T entity)

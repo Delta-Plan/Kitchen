@@ -18,12 +18,13 @@ namespace Database.Ingredients
 
         public string SerialiseToJsonString()
         {
-            throw new NotImplementedException();
+            return "Todo";
+            //throw new NotImplementedException();
         }
         public RecipieIngridients(){}
         public RecipieIngridients(string str)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
         public bool Initialized { get; protected set; }
     }
