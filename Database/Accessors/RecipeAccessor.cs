@@ -19,7 +19,6 @@ namespace Database.Accessors
             {
                 list.Add(TestRecipe);
             }
-            //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
             return list;
         }
 

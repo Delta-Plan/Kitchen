@@ -8,9 +8,9 @@ namespace Database.Accessors
     public class ProductTypeAccessor : BaseAccessor<ProductType>
     {
         private static Dictionary<int, ProductType> _cache = new Dictionary<int, ProductType>();
-        private static object _cacheLock = new object();
+        private static readonly object CacheLock = new object();
         private static DateTime _cacheUpdated = DateTime.FromBinary(0L);
-        private static TimeSpan _cachePeriod = new TimeSpan(0,1,0);
+        private static readonly TimeSpan CachePeriod = new TimeSpan(0,1,0);
         public override ProductType SelectById(int id)
         {
             ProductType cached;
@@ -36,12 +36,12 @@ namespace Database.Accessors
 
         private bool CacheIsOld()
         {
-            return _cacheUpdated + _cachePeriod < DateTime.Now;
+            return _cacheUpdated + CachePeriod < DateTime.Now;
         }
 
         private void TryUpdateCache(int needidId)
         {
-            lock (_cacheLock)
+            lock (CacheLock)
             {
                 if (_cache.ContainsKey(needidId))
                 {

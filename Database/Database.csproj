@@ -47,8 +47,8 @@
     <Compile Include="Accessors\ProductTypeAccessor.cs" />
     <Compile Include="BaseRecipe.cs" />
     <Compile Include="Ingredients\Component.cs" />
-    <Compile Include="Ingredients\IComponent.cs" />
     <Compile Include="Ingredients\MeasureType.cs" />
+    <Compile Include="Ingredients\ProductType.cs" />
     <Compile Include="Ingredients\RecipieIngridients.cs" />
     <Compile Include="KitchenDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

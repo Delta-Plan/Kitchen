@@ -8,15 +8,15 @@ using common.Logging;
 
 namespace Database.Ingredients
 {
-    public class RecipieIngridients : IInitableFromString
+    public class RecipieIngridients
     {
         public IList<Component> Components;
-        public bool InitFromString(string str, ILogger logger)
+        protected bool InitFromString(string str, ILogger logger)
         {
             throw new NotImplementedException();
         }
 
-        public string SerialiseToString(string str, ILogger logger)
+        public string SerialiseToJsonString()
         {
             throw new NotImplementedException();
         }

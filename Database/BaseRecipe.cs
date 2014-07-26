@@ -23,11 +23,6 @@ namespace Database
         [Column]
         public bool IsPublic;
 
-        protected override BaseRecipe GetRef()
-        {
-            return this;
-        }
-
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients
         {
@@ -40,7 +35,9 @@ namespace Database
                 }
                 return _recipieIngridients;
             }
-            set { _recipieIngridients = value; }
+            set { _recipieIngridients = value;
+                _ingridientsJson = value.SerialiseToJsonString();
+            }
         }
 
         [Column]
