@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.Linq;
 using common.Logging;
+using common.Settings;
 
 namespace Database
 {
@@ -44,7 +45,7 @@ namespace Database
 
         private static string DefaultConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["KitchenConnectionString"].ConnectionString;
+            return SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString();
         }
     }
 }

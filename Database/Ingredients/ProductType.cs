@@ -10,8 +10,10 @@ namespace Database.Ingredients
         MeasureType DefaultMeasurement { get; }
     }
 
-    public class ProductType : BaseEntity<ProductType>, IProductType
+    public class ProductType : IBaseEntity, IProductType
     {
+        [Column]
+        public int Id { get; private set; }
         [Column]
         public string Description { get; set; }
         [Column]

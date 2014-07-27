@@ -2,7 +2,7 @@
 
 namespace Database
 {
-    [InheritanceMapping(Type = typeof(SimpleRecipe), IsDefault = false, Code = 10)]
+    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = false)]
     [Table(Name = "dbo.Recipes")]
     public class SimpleRecipe : BaseRecipe
     {

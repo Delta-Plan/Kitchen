@@ -41,11 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\BaseEntity.cs" />
     <Compile Include="Abstracts\IBaseEntity.cs" />
     <Compile Include="Accessors\BaseAccessor.cs" />
     <Compile Include="Accessors\ProductTypeAccessor.cs" />
-    <Compile Include="BaseRecipe.cs" />
+    <Compile Include="Models\BaseRecipe.cs" />
     <Compile Include="Ingredients\Component.cs" />
     <Compile Include="Ingredients\MeasureType.cs" />
     <Compile Include="Ingredients\ProductType.cs" />
@@ -53,9 +52,9 @@
     <Compile Include="KitchenDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Accessors\RecipeAccessor.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="SimpleRecipe.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SimpleRecipe.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.csproj">

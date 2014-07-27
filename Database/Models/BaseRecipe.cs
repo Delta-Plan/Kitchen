@@ -8,10 +8,16 @@ using Database.Ingredients;
 
 namespace Database
 {
-    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
-    [Table(Name = "dbo.Recipes")]
-    public class BaseRecipe: BaseEntity<BaseRecipe>
+    //[InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
+    [Table(Name = "Recipes")]
+    public class BaseRecipe: IBaseEntity
     {
+        [Column]
+        public int OwnerId { get;  set; }
+
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        public int Id { get;  set; }
+
         [Column]
         public string Name;
 
@@ -40,10 +46,10 @@ namespace Database
                 _ingridientsJson = value.SerialiseToJsonString();
             }
         }
-        [Column(IsDiscriminator = true, Name = "Disctiminator")]
-        public int? RecipeType { get; set; }
+
+        //[Column(IsDiscriminator = true, Name = "Disctiminator")]
+        //public int? RecipeType { get; set; }
         
-        [Column]
-        public int OwnerId { get; private set; }
+
     }
 }

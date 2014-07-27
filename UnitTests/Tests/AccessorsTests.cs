@@ -24,7 +24,7 @@ namespace UnitTests.Tests
         [Test]
         public void RecipeAccessorTest()
         {
-            var recipe = new SimpleRecipe {Name = "чорный хлеб"};
+            var recipe = new BaseRecipe{Name = "чорный хлеб"};
             RecipeAccessor.Instance.Insert(recipe);
             var r = RecipeAccessor.Instance.SelectAll().ToList();
             Assert.True(r.Count > 0);
@@ -32,7 +32,7 @@ namespace UnitTests.Tests
             Assert.NotNull(getted);
             RecipeAccessor.Instance.Delete(getted);
             r = RecipeAccessor.Instance.SelectAll().ToList();
-            Assert.Null(r.Where(_ => _.Name.Equals(recipe.Name)));
+            Assert.False(r.Any(_ => _.Name.Equals(recipe.Name)));
         }
 
     }

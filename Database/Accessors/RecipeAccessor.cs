@@ -8,8 +8,9 @@ namespace Database.Accessors
     {
         public override BaseRecipe SelectById(int id)
         {
+            return base.SelectById(id);
             //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
-            return TestRecipe;
+            //return TestRecipe;
         }
 
         public IList<BaseRecipe> LastUpdated(int count)
