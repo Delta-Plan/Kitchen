@@ -25,14 +25,27 @@ namespace UnitTests.Tests
         public void RecipeAccessorTest()
         {
             var recipe = new BaseRecipe{Name = "чорный хлеб"};
-            RecipeAccessor.Instance.Insert(recipe);
-            var r = RecipeAccessor.Instance.SelectAll().ToList();
+            RecipeAccessor<BaseRecipe>.Instance.Insert(recipe);
+            var simpleRecipe = new SimpleRecipe {Name = "очень чорный хлеп"};
+            RecipeAccessor<SimpleRecipe>.Instance.Insert(simpleRecipe);
+            var r = RecipeAccessor<BaseRecipe>.Instance.SelectAll().ToList();
             Assert.True(r.Count > 0);
             var getted = r.Single(_ => _.Name.Equals(recipe.Name));
             Assert.NotNull(getted);
-            RecipeAccessor.Instance.Delete(getted);
-            r = RecipeAccessor.Instance.SelectAll().ToList();
+            Assert.True(getted.GetType() == typeof (BaseRecipe));
+            //
+            var r2 = RecipeAccessor<SimpleRecipe>.Instance.SelectAll();
+            var simpleGetted = r2.Single(_ => _.Name.Equals(simpleRecipe.Name));
+            Assert.NotNull(simpleGetted);
+            Assert.True(simpleGetted.GetType() == typeof(SimpleRecipe));
+            //
+            RecipeAccessor<BaseRecipe>.Instance.Delete(getted);
+            r = RecipeAccessor<BaseRecipe>.Instance.SelectAll().ToList();
             Assert.False(r.Any(_ => _.Name.Equals(recipe.Name)));
+            //
+            RecipeAccessor<SimpleRecipe>.Instance.Delete(simpleGetted);
+            r2 = RecipeAccessor<SimpleRecipe>.Instance.SelectAll();
+            Assert.False(r2.Any(_ => _.Name.Equals(simpleRecipe.Name)));
         }
 
     }

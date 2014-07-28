@@ -8,15 +8,20 @@ using Database.Ingredients;
 
 namespace Database
 {
-    //[InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
+    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
     [Table(Name = "Recipes")]
     public class BaseRecipe: IBaseEntity
     {
         [Column]
         public int OwnerId { get;  set; }
 
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
-        public int Id { get;  set; }
+        [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)] 
+        protected int _id;
+
+        public int Id
+        {
+            get { return _id; }
+        }
 
         [Column]
         public string Name;
@@ -29,6 +34,14 @@ namespace Database
 
         [Column]
         public bool IsPublic;
+
+        [Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
+        protected int _recipeTypeId;
+
+        public int RecipeType
+        {
+            get { return _recipeTypeId; }
+        }
 
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients

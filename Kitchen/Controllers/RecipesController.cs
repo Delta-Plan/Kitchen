@@ -12,7 +12,7 @@ namespace Kitchen.Controllers
 
         public ActionResult Index(int id=0)
         {
-            var reader = new RecipeAccessor();
+            var reader = RecipeAccessor<BaseRecipe>.Instance;
             var readed = reader.SelectById(id);
             return View(readed);
         }
@@ -44,7 +44,7 @@ namespace Kitchen.Controllers
                 var toSubmit = new SimpleRecipe();
                 toSubmit.Name = data["Name"];
                 toSubmit.Description = data["Description"];
-                RecipeAccessor.Instance.Insert(toSubmit);
+                RecipeAccessor<SimpleRecipe>.Instance.Insert(toSubmit);
                 return Content("Рецепт успешно сохранён в книге");//RedirectToAction("Index");
             }
             catch

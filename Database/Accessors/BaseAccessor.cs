@@ -9,9 +9,14 @@ using Database.Abstracts;
 
 namespace Database.Accessors
 {
-    public class BaseAccessor<T> : SingletonBase<BaseAccessor<T>> where T : class, IBaseEntity
+    public class BaseAccessor<AT,T> : SingletonBase<AT> where T : class, IBaseEntity where AT : class
     {
         protected ILogger DefaultLogger = NLogWrapper.GetNLogWrapper();
+
+        protected BaseAccessor()
+        {
+            
+        }
 
         public virtual T SelectById(int id)
         {
