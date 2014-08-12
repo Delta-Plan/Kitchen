@@ -15,7 +15,7 @@ namespace Kitchen.Controllers
 
         public ActionResult Index()
         {
-            var reader = RecipeAccessor<SimpleRecipe>.Instance;
+            var reader = RecipeAccessor.Instance;
             var lastAdded = reader.LastUpdated(20);
             ViewBag.Entries = lastAdded;
             return View();

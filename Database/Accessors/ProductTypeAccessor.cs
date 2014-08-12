@@ -6,14 +6,33 @@ using Database.Ingredients;
 
 namespace Database.Accessors
 {
-    public class ProductTypeAccessor : BaseAccessor<ProductTypeAccessor, ProductType>
+    public class ProductTypeAccessor : BaseAccessor<ProductType>
     {
+#region Singleton
+        private static ProductTypeAccessor _instance;
+        private static object _sync = new object();
+
+        public static ProductTypeAccessor Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock(_sync)
+                        if(_instance == null)
+                            _instance = new ProductTypeAccessor();
+                }
+                return _instance;
+            }
+        }
+
+        private ProductTypeAccessor(){}
+#endregion
+
         private static Dictionary<int, ProductType> _cache = new Dictionary<int, ProductType>();
         private static readonly object CacheLock = new object();
         private static DateTime _cacheUpdated = DateTime.FromBinary(0L);
         private static readonly TimeSpan CachePeriod = new TimeSpan(0,1,0);
-
-        private ProductTypeAccessor() {}
 
         public override ProductType SelectById(int id)
         {

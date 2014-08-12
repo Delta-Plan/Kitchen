@@ -8,9 +8,9 @@ using Database.Ingredients;
 
 namespace Database
 {
-    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
-    [Table(Name = "Recipes")]
-    public class BaseRecipe: IBaseEntity
+    //[InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)] 
+    [Table(Name = "Recipes")] // todo начнём с простого...как минимум с того, что, хотя бы, работает...
+    public class BaseRecipe : IBaseEntity
     {
         [Column]
         public int OwnerId { get;  set; }
@@ -35,13 +35,13 @@ namespace Database
         [Column]
         public bool IsPublic;
 
-        [Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
-        protected int _recipeTypeId;
+        //[Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
+        //protected int _recipeTypeId;
 
-        public int RecipeType
-        {
-            get { return _recipeTypeId; }
-        }
+        //public int RecipeType
+        //{
+        //    get { return _recipeTypeId; }
+        //}
 
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients

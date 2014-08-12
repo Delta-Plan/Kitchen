@@ -44,6 +44,8 @@
     <Compile Include="Abstracts\IBaseEntity.cs" />
     <Compile Include="Accessors\BaseAccessor.cs" />
     <Compile Include="Accessors\ProductTypeAccessor.cs" />
+    <Compile Include="Accessors\RoleAccessor.cs" />
+    <Compile Include="Accessors\UserAccessor.cs" />
     <Compile Include="Models\BaseRecipe.cs" />
     <Compile Include="Ingredients\Component.cs" />
     <Compile Include="Ingredients\MeasureType.cs" />

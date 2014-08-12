@@ -1,27 +1,41 @@
 ﻿using System.Collections.Generic;
 using common.Logging;
+using common.Singleton;
 using Database.Abstracts;
 using Database.Ingredients;
 
 namespace Database.Accessors
 {
-    public class RecipeAccessor<T> : BaseAccessor<RecipeAccessor<T>, T> where T : class, IBaseEntity
+    public class RecipeAccessor : BaseAccessor<BaseRecipe>
     {
-        protected  RecipeAccessor()
+        #region Singleton
+        private static object _sync = new object();
+        private static RecipeAccessor _instance;
+        public static RecipeAccessor Instance
         {
-            
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_sync)
+                        if(_instance== null)
+                            _instance = new RecipeAccessor();
+                }
+                return _instance;
+            }
         }
+        #endregion
 
-        public override T SelectById(int id)
+        public override BaseRecipe SelectById(int id)
         {
             return base.SelectById(id);
             //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
             //return TestRecipe;
         }
 
-        public IList<T> LastUpdated(int count)
+        public IList<BaseRecipe> LastUpdated(int count)
         {
-            var list = new List<T>(count);
+            var list = new List<BaseRecipe>(count);
             for (int c = 0; c < count; c++)
             {
                 //list.Add(TestRecipe);

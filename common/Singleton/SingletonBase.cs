@@ -10,7 +10,7 @@ namespace common.Singleton
     /// A base class for the singleton design pattern.
     /// </summary>
     /// <typeparam name="T">Class type of the singleton</typeparam>
-    public abstract class SingletonBase<T> where T : class
+    public abstract class SingletonBase<T> where T : class // todo seal class wich inherite this Singleton
     {
         #region Members
 

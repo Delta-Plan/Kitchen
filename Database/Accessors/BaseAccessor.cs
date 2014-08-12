@@ -9,20 +9,16 @@ using Database.Abstracts;
 
 namespace Database.Accessors
 {
-    public class BaseAccessor<AT,T> : SingletonBase<AT> where T : class, IBaseEntity where AT : class
+    public abstract class BaseAccessor<T> where T : class, IBaseEntity 
     {
         protected ILogger DefaultLogger = NLogWrapper.GetNLogWrapper();
-
-        protected BaseAccessor()
-        {
-            
-        }
 
         public virtual T SelectById(int id)
         {
             DataContext a = KitchenDataContext.CreateInstance(null,
                 SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            return (T) a.ExecuteQuery<T>("select top 1 * from Recipes where Id=@p0", id);
+            //return (T) a.ExecuteQuery<T>("select top 1 * from Recipes where Id=@p0", id);
+            return a.GetTable<T>().Single(_ => _.Id == id);
         }
 
         public IQueryable<T> SelectAll()//типа сдёрни всё 1оо5оо записей с базы?

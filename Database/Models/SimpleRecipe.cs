@@ -3,8 +3,8 @@
 namespace Database
 {
     //[InheritanceMapping(Type = typeof(SimpleRecipe), IsDefault = false, Code = 2)]
-    [Table(Name = "dbo.Recipes")]
-    public class SimpleRecipe : BaseRecipe
+    //[Table(Name = "dbo.Recipes")]
+    public class SimpleRecipe : BaseRecipe // todo пока не придумал, ак из одной таблицы получать разные объекты
     {
         public SimpleRecipe()
             : base()
