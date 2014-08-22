@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Database.Models;
 using common.Logging;
 using common.Settings;
 using Database;
@@ -31,6 +32,22 @@ namespace UnitTests.Tests
             var getted = recipes.Single(_ => _.Id == recipe.Id);
             Assert.NotNull(getted);
             Assert.True(getted.GetType() == typeof (BaseRecipe));
+            //
+            //
+            RecipeAccessor.Instance.Delete(getted);
+            recipes = RecipeAccessor.Instance.SelectAll().ToList();
+            Assert.False(recipes.Any(_ => _.Id == recipe.Id));
+        }
+        [Test]
+        public void AccessorSimpleRecipeTest()
+        {
+            var recipe = new SimpleRecipe() { Name = "SimpleRecipeTest" };
+            RecipeAccessor.Instance.Insert(recipe);
+            var recipes = RecipeAccessor.Instance.SelectAll().ToList();
+            Assert.True(recipes.Count > 0);
+            var getted = recipes.Single(_ => _.Id == recipe.Id);
+            Assert.NotNull(getted);
+            Assert.True(getted.GetType() == typeof(SimpleRecipe));
             //
             //
             RecipeAccessor.Instance.Delete(getted);

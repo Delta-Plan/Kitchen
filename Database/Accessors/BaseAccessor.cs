@@ -17,11 +17,10 @@ namespace Database.Accessors
         {
             DataContext a = KitchenDataContext.CreateInstance(null,
                 SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            //return (T) a.ExecuteQuery<T>("select top 1 * from Recipes where Id=@p0", id);
             return a.GetTable<T>().Single(_ => _.Id == id);
         }
 
-        public IQueryable<T> SelectAll()//типа сдёрни всё 1оо5оо записей с базы?
+        public IQueryable<T> SelectAll()
         {
             var logger = DefaultLogger;
             var conStr = SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString();

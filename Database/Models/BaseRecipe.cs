@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
+﻿using System.Data.Linq.Mapping;
 using Database.Abstracts;
-using Database.Accessors;
 using Database.Ingredients;
 
-namespace Database
+namespace Database.Models
 {
-    //[InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)] 
-    [Table(Name = "Recipes")] // todo начнём с простого...как минимум с того, что, хотя бы, работает...
+    [Table(Name = "Recipes")]
+    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
+    [InheritanceMapping(Type = typeof(SimpleRecipe), IsDefault = false, Code = 2)]
     public class BaseRecipe : IBaseEntity
     {
         [Column]
@@ -35,13 +32,13 @@ namespace Database
         [Column]
         public bool IsPublic;
 
-        //[Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
-        //protected int _recipeTypeId;
+        [Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
+        protected int RecipeTypeId;
 
-        //public int RecipeType
-        //{
-        //    get { return _recipeTypeId; }
-        //}
+        public int RecipeType
+        {
+            get { return RecipeTypeId; }
+        }
 
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients
@@ -59,10 +56,6 @@ namespace Database
                 _ingridientsJson = value.SerialiseToJsonString();
             }
         }
-
-        //[Column(IsDiscriminator = true, Name = "Disctiminator")]
-        //public int? RecipeType { get; set; }
-        
 
     }
 }

@@ -12,7 +12,8 @@ namespace common.Settings
         {
             return new SettingsWrap
             {
-                ConnectionString = "Data Source=IVAN_PC\\SQLEXPRESS;Initial Catalog=KitchenDb;Integrated Security=True"
+                //ConnectionString = "Data Source=IVAN_PC\\SQLEXPRESS;Initial Catalog=KitchenDb;Integrated Security=True"
+                ConnectionString = "Data Source=R9VLBLG\\SQLEXPRESS;Initial Catalog=KitchenDb;Integrated Security=True"
             };
         }
     }
