@@ -1,5 +1,22 @@
-﻿ALTER TABLE Recipes
-ADD Disctiminator int 
+﻿IF EXISTS (SELECT * 
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Recipes' AND COLUMN_NAME = 'Discriminator')
+BEGIN
+	ALTER TABLE Recipes
+	DROP COLUMN Discriminator
+END
+
+ALTER TABLE Recipes
+ADD Discriminator int 
+
+
+IF EXISTS (SELECT * 
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Recipes' AND COLUMN_NAME = 'IngridientsJson')
+BEGIN
+	ALTER TABLE Recipes
+	DROP COLUMN IngridientsJson
+END
 
 ALTER TABLE Recipes
 ADD IngridientsJson varchar(500)
