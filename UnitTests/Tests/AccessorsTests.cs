@@ -9,6 +9,7 @@ using NUnit.Framework;
 namespace UnitTests.Tests
 {
     //S.Rozhin мне этот тест не нравится, т.к. он не нашёл баг.
+    //I.Shlykom напиши тест, который найдёт
     [TestFixture]
     public class AccessorsTests : BaseTest
     {
@@ -19,8 +20,8 @@ namespace UnitTests.Tests
         public void SetupTest()
         {
             var dataContext = KitchenDataContext.CreateInstance(Logger, SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            var roles = dataContext.GetTable<Role>().ToList();
-            Assert.True(roles.Count > 0);
+            var roles = dataContext.GetTable<Role>();
+            //Assert.True(roles.Count > 0);
         }
         
         [Test]
@@ -28,15 +29,15 @@ namespace UnitTests.Tests
         {
             var recipe = new BaseRecipe{Name = "чорный хлеб"};
             RecipeAccessor.Instance.Insert(recipe);
-            var recipes = RecipeAccessor.Instance.SelectAll().ToList();//S.Rozhin вот такое приведет к тому, что с базы сдёрнется вся таблица
-            Assert.True(recipes.Count > 0);
+            var recipes = RecipeAccessor.Instance.SelectAll();
+            //Assert.True(recipes.Count > 0);
             var getted = recipes.Single(_ => _.Id == recipe.Id);
             Assert.NotNull(getted);
             Assert.True(getted.GetType() == typeof (BaseRecipe));
             //
             //
             RecipeAccessor.Instance.Delete(getted);
-            recipes = RecipeAccessor.Instance.SelectAll().ToList();
+            recipes = RecipeAccessor.Instance.SelectAll();
             Assert.False(recipes.Any(_ => _.Id == recipe.Id));
         }
         [Test]
@@ -44,15 +45,15 @@ namespace UnitTests.Tests
         {
             var recipe = new SimpleRecipe() { Name = "SimpleRecipeTest" };
             RecipeAccessor.Instance.Insert(recipe);
-            var recipes = RecipeAccessor.Instance.SelectAll().ToList();
-            Assert.True(recipes.Count > 0);
+            var recipes = RecipeAccessor.Instance.SelectAll();
+            //Assert.True(recipes.Count > 0);
             var getted = recipes.Single(_ => _.Id == recipe.Id);
             Assert.NotNull(getted);
             Assert.True(getted.GetType() == typeof(SimpleRecipe));
             //
             //
             RecipeAccessor.Instance.Delete(getted);
-            recipes = RecipeAccessor.Instance.SelectAll().ToList();
+            recipes = RecipeAccessor.Instance.SelectAll();
             Assert.False(recipes.Any(_ => _.Id == recipe.Id));
         }
 
