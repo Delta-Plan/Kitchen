@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using common;
 using common.Logging;
 
 namespace Database.Ingredients
@@ -23,7 +19,7 @@ namespace Database.Ingredients
             
             try
             {
-                 json =(string) new JavaScriptSerializer().Serialize(this.Components);
+                 json = new JavaScriptSerializer().Serialize(Components);
             }
             catch (InvalidOperationException longReciepException)
             {
@@ -51,14 +47,14 @@ namespace Database.Ingredients
             try
             {
                 var Obj = (IList<Component>) new JavaScriptSerializer().Deserialize(str, typeof(IList<Component>));
-                this.Components = Obj; 
-                this.Initialized = true;
+                Components = Obj; 
+                Initialized = true;
             }
             catch (ArgumentException invalidIngridientsException)
             {
                 this.Initialized = false;
                 ILogger Logger = NLogWrapper.GetNLogWrapper();
-                Logger.Error(String.Format("Invalid recipes ingredient in base. Can't convert from JSON string to object RecipieIngridients\n{0}",
+                Logger.Error(String.Format("Invalid recipes ingredient in base. Can't convert from JSON string to object RecipieIngridients\n{0}",//S.Rozhin хорошо бы ещё понимать, где эта хрень в базе, чтобы поправить руками можно было.
                             invalidIngridientsException.Message));
 
             }
