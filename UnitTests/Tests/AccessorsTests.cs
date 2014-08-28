@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace UnitTests.Tests
 {
+    //S.Rozhin мне этот тест не нравится, т.к. он не нашёл баг.
     [TestFixture]
     public class AccessorsTests : BaseTest
     {
@@ -21,13 +22,13 @@ namespace UnitTests.Tests
             var roles = dataContext.GetTable<Role>().ToList();
             Assert.True(roles.Count > 0);
         }
-
+        
         [Test]
         public void RecipeAccessorTest()
         {
             var recipe = new BaseRecipe{Name = "чорный хлеб"};
             RecipeAccessor.Instance.Insert(recipe);
-            var recipes = RecipeAccessor.Instance.SelectAll().ToList();
+            var recipes = RecipeAccessor.Instance.SelectAll().ToList();//S.Rozhin вот такое приведет к тому, что с базы сдёрнется вся таблица
             Assert.True(recipes.Count > 0);
             var getted = recipes.Single(_ => _.Id == recipe.Id);
             Assert.NotNull(getted);

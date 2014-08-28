@@ -17,7 +17,14 @@ namespace Database.Accessors
         {
             DataContext a = KitchenDataContext.CreateInstance(null,
                 SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            return a.GetTable<T>().Single(_ => _.Id == id);
+            return a.GetTable<T>().Single(_ => _.Id == id);//S.Rozhin this code not work because Id field has no mapping to SQL
+        }
+
+        protected IEnumerable<T> ExecuteQuery(string query, params object[] parameters)
+        {
+            DataContext context = KitchenDataContext.CreateInstance(null,
+                SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
+            return context.ExecuteQuery<T>(query,parameters);
         }
 
         public IQueryable<T> SelectAll()
