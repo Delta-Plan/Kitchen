@@ -6,7 +6,7 @@ namespace Database
     [Table(Name = "Roles")]
     public class Role : IBaseEntity
     {
-        [Column(IsPrimaryKey = true)] 
+        [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)] 
         protected int _id;
 
         public int Id
