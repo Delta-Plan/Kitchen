@@ -13,6 +13,10 @@ namespace Kitchen.Controllers
 
         public ActionResult Index(int id=0)
         {
+            if (id==0)
+            {
+                id = 2;//S.Rozhin todo for normal
+            }
             var reader = RecipeAccessor.Instance;
             var readed = reader.SelectById(id);
             return View(readed);
