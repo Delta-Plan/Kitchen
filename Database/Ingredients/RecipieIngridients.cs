@@ -16,7 +16,7 @@ namespace Database.Ingredients
         public string SerialiseToJsonString()
         {
             String json = String.Empty;
-            
+            //S.Rozhin todo проверка на условия, чтобы не вылетать постоянно
             try
             {
                  json = new JavaScriptSerializer().Serialize(Components);
