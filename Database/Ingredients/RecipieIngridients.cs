@@ -40,7 +40,10 @@ namespace Database.Ingredients
             return json;
             //throw new NotImplementedException();
         }
-        public RecipieIngridients(){}
+        public RecipieIngridients()
+        {
+            Components = new List<Component>();
+        }
         public RecipieIngridients(string str)
         {
 
