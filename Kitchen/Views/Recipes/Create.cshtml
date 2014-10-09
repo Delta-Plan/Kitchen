@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Kitchen.Auxillary
+@{
     ViewBag.Title = "Добавление рецепта в книгу";
 }
 
@@ -10,13 +11,21 @@
         <input type="text" name="Name" maxlength="200" />
         <br />
         Какие в нём есть ингридиенты?
+        <div class="control-group">
+            <div class="controls">
+                <input type="text" name="Ingr" maxlength="200" />
+                @Html.DropDownList("MeasureType", MeasureHelperTemp.ProductMeasureSelectList)
+            </div>
+        </div>
         <br />
         Как его приготовить?
         <br />
         <textarea name="Description" rows="10" cols="40">
 </textarea>
         <br />
+        
         <br />
         <input type="submit" value="Сохранить рецепт" />
+
     </fieldset>
 </form>
