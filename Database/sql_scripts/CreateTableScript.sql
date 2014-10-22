@@ -1,0 +1,24 @@
+﻿CREATE DATABASE KitchenDb
+GO
+USE KitchenDb
+GO
+
+CREATE TABLE dbo.Users
+(
+UserId INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+RoleId INT NOT NULL,
+Name VARCHAR(32) )
+
+CREATE TABLE dbo.Roles(
+RoleId int NOT NULL PRIMARY KEY IDENTITY(1,1),
+Name VARCHAR(32),
+"Description" VARCHAR(64))
+
+CREATE TABLE dbo.Recipes(
+RecipeId int NOT NULL PRIMARY KEY IDENTITY(1,1),
+OwnerId int NOT NULL,
+Name VARCHAR(32),
+"Description" VARCHAR(256),
+IsPublic BIT,
+IngridientsJson VARCHAR(512))
+GO
