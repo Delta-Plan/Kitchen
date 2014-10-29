@@ -25,7 +25,7 @@ namespace Database.Accessors
             var logger = DefaultLogger;
             using (var dc = KitchenDataContext.CreateInstance(logger, conStr))
             {
-                return dc.ExecuteQuery<T>(query,parameters);
+                return dc.ExecuteQuery<T>(query, parameters).ToArray();//S.Rozhin TODO Fix 
             }
         }
 

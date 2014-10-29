@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using Database.Ingredients;
 using Database.Models;
+using Kitchen.Models;
 using common.Logging;
 using Database;
 using Database.Accessors;
@@ -18,8 +20,47 @@ namespace Kitchen.Controllers
                 id = 2;//S.Rozhin todo for normal
             }
             var reader = RecipeAccessor.Instance;
-            var readed = reader.SelectById(id);
+            var readed = GetFakeRecipeForDebug();//reader.SelectById(id);
             return View(readed);
+        }
+
+        private SimpleRecipeViewModel GetFakeRecipeForDebug()
+        {
+            return new SimpleRecipeViewModel
+                {
+                    Name = "Сэндвич с сливочным сыром и лососем",
+                    Description =
+                        "Кофе в кемексе получается нежным и лишённым горечи, мягким и с яркой индивидуальностью.",
+                    Ingridients = new RecipieIngridients
+                        {
+                            Components = new[]
+                                {
+                                    new Component
+                                        {
+                                            Ammount = 2,
+                                            Measurement = MeasureType.TeaSpoon,
+                                            ProductType = new ProductType
+                                                {
+                                                    DefaultMeasurement = MeasureType.TeaSpoon,
+                                                    Description = "обычный тип продукта",
+                                                    Name = "Солъ"
+                                                }
+                                        },
+                                    new Component
+                                        {
+                                            Ammount = 1,
+                                            Measurement = MeasureType.Item,
+                                            ProductType = new ProductType
+                                                {
+                                                    DefaultMeasurement = MeasureType.AtTaste,
+                                                    Description = "не обычный тип продукта",
+                                                    Name = "Перец"
+                                                }
+                                        },
+                                }
+                        }
+
+                };
         }
 
         //

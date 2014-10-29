@@ -31,7 +31,7 @@ namespace Database.Accessors
         //S.Rozhin may be not good but it works
         public override BaseRecipe SelectById(int id)
         {
-            return ExecuteQuery("SELECT * FROM Recipes where Id=@p0", id).SingleOrDefault();
+            return ExecuteQuery("SELECT * FROM Recipes where Id=@p0", id).FirstOrDefault();
             //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
             //return TestRecipe;
         }
