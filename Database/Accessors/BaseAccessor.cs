@@ -4,7 +4,6 @@ using System.Data.Linq;
 using System.Linq;
 using common.Logging;
 using common.Settings;
-using common.Singleton;
 using Database.Abstracts;
 
 namespace Database.Accessors
@@ -22,9 +21,12 @@ namespace Database.Accessors
 
         protected IEnumerable<T> ExecuteQuery(string query, params object[] parameters)
         {
-            DataContext context = KitchenDataContext.CreateInstance(null,
-                SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            return context.ExecuteQuery<T>(query,parameters);
+            var conStr = SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString();
+            var logger = DefaultLogger;
+            using (var dc = KitchenDataContext.CreateInstance(logger, conStr))
+            {
+                return dc.ExecuteQuery<T>(query,parameters);
+            }
         }
 
         public IQueryable<T> SelectAll()
@@ -37,32 +39,34 @@ namespace Database.Accessors
 
         public void Insert(T entity)
         {
-            DataContext a = KitchenDataContext.CreateInstance(DefaultLogger,
-                SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            var recipe = a.GetTable<T>();
-            recipe.InsertOnSubmit(entity);
-            try
+            using (var a = KitchenDataContext.CreateInstance(DefaultLogger, SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
             {
-                a.SubmitChanges();
-            }
-            catch (Exception ex)
-            {
-                DefaultLogger.Error(String.Format("Не удалось записать сущность в базу. {0}", ex.Message));
+                var recipe = a.GetTable<T>();
+                recipe.InsertOnSubmit(entity);
+                try
+                {
+                    a.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    DefaultLogger.Error(String.Format("Не удалось записать сущность в базу. {0}", ex.Message));
+                }
             }
         }
 
         public void Delete(T entity)
         {
-            DataContext a = KitchenDataContext.CreateInstance(DefaultLogger,
-                SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            a.GetTable<T>().DeleteOnSubmit(entity);
-            try
+            using (var a = KitchenDataContext.CreateInstance(DefaultLogger, SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
             {
-                a.SubmitChanges();
-            }
-            catch (Exception ex)
-            {
-                DefaultLogger.Error(String.Format("Не удалось удалить сущность из базы. {0}", ex.Message));
+                a.GetTable<T>().DeleteOnSubmit(entity);
+                try
+                {
+                    a.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    DefaultLogger.Error(String.Format("Не удалось удалить сущность из базы. {0}", ex.Message));
+                }
             }
         }
 
