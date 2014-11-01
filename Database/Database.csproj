@@ -47,6 +47,11 @@
     <Compile Include="Accessors\ProductTypeAccessor.cs" />
     <Compile Include="Accessors\RoleAccessor.cs" />
     <Compile Include="Accessors\UserAccessor.cs" />
+    <Compile Include="Kitchen.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kitchen.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\BaseRecipe.cs" />
     <Compile Include="Ingredients\Component.cs" />
     <Compile Include="Ingredients\MeasureType.cs" />
@@ -58,6 +63,11 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SimpleRecipe.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\common.csproj">
@@ -67,12 +77,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Kitchen.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Kitchen.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="sql_scripts\2014_08_22_RecipeType.sql" />
     <Content Include="sql_scripts\CreateTableScript.sql" />
     <Content Include="sql_scripts\discriminator.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Kitchen.dbml.layout">
+      <DependentUpon>Kitchen.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,17 +3,24 @@ using Database.Abstracts;
 
 namespace Database.Ingredients
 {
-    public interface IProductType : IBaseEntity//todo immutable
+    public interface IProductType//todo immutable
     {
         string Name { get; }
         string Description { get; }
         MeasureType DefaultMeasurement { get; }
     }
 
-    public class ProductType : IProductType
+    public class ProductType : IBaseEntity, IProductType
     {
-        [Column]
-        public int Id { get; private set; }
+        [Column(Name = "Id")]
+        private int _id;
+
+        public int Id
+        {
+            get { return _id; }
+            set { }
+        }
+
         [Column]
         public string Description { get; set; }
         [Column]

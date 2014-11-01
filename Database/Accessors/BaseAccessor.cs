@@ -8,15 +8,19 @@ using Database.Abstracts;
 
 namespace Database.Accessors
 {
-    public abstract class BaseAccessor<T> where T : class, IBaseEntity 
+    public abstract class BaseAccessor<T> where T : class, IBaseEntity
     {
         protected ILogger DefaultLogger = NLogWrapper.GetNLogWrapper();
 
         public virtual T SelectById(int id)
         {
-            DataContext a = KitchenDataContext.CreateInstance(null,
-                SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString());
-            return a.GetTable<T>().Single(_ => _.Id == id);//S.Rozhin this code not work because Id field has no mapping to SQL
+            using (
+                var a = KitchenDataContext.CreateInstance(null,
+                    SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
+            {
+                var table = a.GetTable<T>();
+                return table.Single(_ => _.Id.Equals(id));
+            }
         }
 
         protected IEnumerable<T> ExecuteQuery(string query, params object[] parameters)

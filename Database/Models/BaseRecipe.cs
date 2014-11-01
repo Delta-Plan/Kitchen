@@ -1,23 +1,26 @@
-﻿using System.Data.Linq.Mapping;
+﻿using System.Data;
+using System.Data.Linq.Mapping;
 using Database.Abstracts;
 using Database.Ingredients;
 
 namespace Database.Models
 {
     [Table(Name = "Recipes")]
-    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
-    [InheritanceMapping(Type = typeof(SimpleRecipe), IsDefault = false, Code = 2)]
+    //[InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
+    //[InheritanceMapping(Type = typeof(SimpleRecipe), IsDefault = false, Code = 2)]
     public class BaseRecipe : IBaseEntity
     {
         [Column]
         public int OwnerId { get;  set; }
 
-        [Column(IsPrimaryKey = true, Name = "Id", IsDbGenerated = true)] 
+        
         protected int _id;
 
+        [Column(Storage = "_id", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id
         {
             get { return _id; }
+            set {}
         }
 
         [Column]
@@ -32,13 +35,13 @@ namespace Database.Models
         [Column]
         public bool IsPublic;
 
-        [Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
-        protected int RecipeTypeId;
+        //[Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
+        //protected int RecipeTypeId;
 
-        public int RecipeType
-        {
-            get { return RecipeTypeId; }
-        }
+        //public int RecipeType
+        //{
+        //    get { return RecipeTypeId; }
+        //}
 
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients

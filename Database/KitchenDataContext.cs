@@ -6,14 +6,9 @@ using common.Settings;
 
 namespace Database
 {
-    public class KitchenDataContext : DataContext
+    public partial class KitchenDataContext : DataContext
     {
         private static ILogger Logger;
-
-        private KitchenDataContext(string connectionString)
-            :base(connectionString)
-        {
-        }
 
         public static KitchenDataContext CreateInstance(ILogger logger, string connectionString)
         {

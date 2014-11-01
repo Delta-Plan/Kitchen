@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using common.Settings;
 using Database.Models;
 using common.Logging;
 using common.Singleton;
@@ -13,6 +16,7 @@ namespace Database.Accessors
         #region Singleton
         private static object _sync = new object();
         private static RecipeAccessor _instance;
+
         public static RecipeAccessor Instance
         {
             get
@@ -31,9 +35,13 @@ namespace Database.Accessors
         //S.Rozhin may be not good but it works
         public override BaseRecipe SelectById(int id)
         {
-            return ExecuteQuery("SELECT * FROM Recipes where Id=@p0", id).SingleOrDefault();
-            //logger.Info(string.Format("Started RecipeReader.GetRecipie. RecipieId: {0}", recipieId));
-            //return TestRecipe;
+            //return base.SelectById(id);
+            using (var a = KitchenDataContext.CreateInstance(null,
+                SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
+            {
+                var table = a.GetTable<BaseRecipe>();
+                return table.Single(_ => _.Id == id);
+            }
         }
 
         public IList<BaseRecipe> LastUpdated(int count)

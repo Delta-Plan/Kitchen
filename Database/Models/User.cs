@@ -12,6 +12,7 @@ namespace Database.Models
         public int Id
         {
             get { return _id; }
+            set {}
         }
 
         [Column] public string Name;

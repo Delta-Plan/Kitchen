@@ -12,6 +12,7 @@ namespace Database
         public int Id
         {
             get { return _id; }
+            set{}
         }
 
         [Column] 
