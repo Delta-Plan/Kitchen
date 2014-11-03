@@ -6,13 +6,13 @@ namespace Database
     [Table(Name = "Roles")]
     public class Role : IBaseEntity
     {
-        [Column(IsPrimaryKey = true, Name = "Id")] 
         protected int _id;
 
+        [Column(Storage = "_id", AutoSync = AutoSync.OnInsert, IsPrimaryKey = true)] 
         public int Id
         {
             get { return _id; }
-            set{}
+            set { _id = value; }
         }
 
         [Column] 

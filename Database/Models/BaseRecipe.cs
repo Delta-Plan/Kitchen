@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Data.Linq.Mapping;
+﻿using System.Data.Linq.Mapping;
 using Database.Abstracts;
 using Database.Ingredients;
 
@@ -13,14 +12,13 @@ namespace Database.Models
         [Column]
         public int OwnerId { get;  set; }
 
-        
         protected int _id;
 
         [Column(Storage = "_id", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id
         {
             get { return _id; }
-            set {}
+            set { _id = value; }
         }
 
         [Column]
@@ -34,14 +32,6 @@ namespace Database.Models
 
         [Column]
         public bool IsPublic;
-
-        //[Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
-        //protected int RecipeTypeId;
-
-        //public int RecipeType
-        //{
-        //    get { return RecipeTypeId; }
-        //}
 
         private RecipieIngridients _recipieIngridients;
         public RecipieIngridients Ingridients
@@ -59,6 +49,5 @@ namespace Database.Models
                 _ingridientsJson = value.SerialiseToJsonString();
             }
         }
-
     }
 }

@@ -60,7 +60,9 @@ namespace Database.Accessors
 
         public void Delete(T entity)
         {
-            using (var a = KitchenDataContext.CreateInstance(DefaultLogger, SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
+            using (
+                var a = KitchenDataContext.CreateInstance(DefaultLogger,
+                    SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
             {
                 a.GetTable<T>().DeleteOnSubmit(entity);
                 try
@@ -78,8 +80,14 @@ namespace Database.Accessors
         {
             if(entity.Id == 0)
                 DefaultLogger.Warn(String.Format("Попsтка обновления несуществующей сущности типа: '{0}'", typeof(T)));
+
+            using (
+                var a = KitchenDataContext.CreateInstance(DefaultLogger,
+                    SettingsManager.Instance.GetSettingByKey("ConnectionString").ToString()))
+            {
+                // todo I.Shlykov
+            }
             
-            // todo I.Shlykov
         }
     }
 }

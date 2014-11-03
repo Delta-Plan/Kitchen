@@ -12,19 +12,21 @@ namespace Database.Ingredients
 
     public class ProductType : IBaseEntity, IProductType
     {
-        [Column(Name = "Id")]
         private int _id;
 
+        [Column(Storage = "_id", AutoSync = AutoSync.OnInsert, IsDbGenerated = true)]
         public int Id
         {
             get { return _id; }
-            set { }
+            set { _id = value; }
         }
 
         [Column]
         public string Description { get; set; }
+
         [Column]
         public string Name { get; set; }
+
         [Column(Name = "Measurement", DbType = "int")]//s.rozhin возможно так не полетит, переделаю на геттер и сеттер с приватной интовой переменной
         public MeasureType DefaultMeasurement { get; set; }
         public ProductType() { }

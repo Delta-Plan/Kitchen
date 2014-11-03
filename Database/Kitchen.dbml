@@ -1,3 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="KitchenDb" Class="KitchenDataContext" EntityBase="IBaseEntity" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <!--
+  <Connection Mode="AppSettings" ConnectionString="Data Source=IVAN_PC\SQLEXPRESS;Initial Catalog=KitchenDb;Integrated Security=True" SettingsObjectName="Database.Properties.Settings" SettingsPropertyName="KitchenDbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+    </Type>
+  </Table>
+-->
 </Database>
