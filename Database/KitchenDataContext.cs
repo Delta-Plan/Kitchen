@@ -8,29 +8,18 @@ namespace Database
 {
     public class KitchenDataContext : DataContext
     {
-        private static volatile KitchenDataContext _kitchenDataContext;
-        private static readonly object SyncRoot = new object();
         private static ILogger Logger;
 
         private KitchenDataContext(string connectionString)
             :base(connectionString)
         {
-            
         }
 
         public static KitchenDataContext CreateInstance(ILogger logger, string connectionString)
         {
-            if(_kitchenDataContext == null)
-                {
-                    lock(SyncRoot)
-                        if (_kitchenDataContext == null)
-                        {
-                            Logger = logger;
-                            AssertConnectionString(ref connectionString);
-                            _kitchenDataContext = new KitchenDataContext(connectionString);
-                        }
-                }
-            return _kitchenDataContext;
+            Logger = logger;
+            AssertConnectionString(ref connectionString);
+            return new KitchenDataContext(connectionString);
         }
 
         private static void AssertConnectionString(ref string connectionString)
