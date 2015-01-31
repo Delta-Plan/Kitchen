@@ -9,8 +9,12 @@ namespace Database.Ingredients
 
         [Description("Чайная ложка")]
         TeaSpoon = 1,
-
-        [Description("Чайная ложка")]
-        Item = 2
-    }
+        SoupSpoon=2,
+        Glass = 3,
+        Thimbleful = 4,//щепотка
+        Gram = 5,
+        Kilo = 6,
+        Milliliter = 7,
+        Liter = 8,
+        Item = 9// это я так поняла шт.    }
 }

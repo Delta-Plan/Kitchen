@@ -5,8 +5,6 @@ using Database.Ingredients;
 namespace Database.Models
 {
     [Table(Name = "Recipes")]
-    [InheritanceMapping(Type = typeof(BaseRecipe), IsDefault = true, Code = 1)]
-    [InheritanceMapping(Type = typeof(SimpleRecipe), IsDefault = false, Code = 2)]
     public class BaseRecipe : IBaseEntity
     {
         [Column]
@@ -32,7 +30,7 @@ namespace Database.Models
         [Column]
         public bool IsPublic;
 
-        [Column(IsDiscriminator = true, Name = "RecipeTypeId")] 
+        [Column]
         protected int RecipeTypeId;
 
         public int RecipeType

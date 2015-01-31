@@ -42,13 +42,13 @@ namespace UnitTests.Tests
         [Test]
         public void AccessorSimpleRecipeTest()
         {
-            var recipe = new SimpleRecipe() { Name = "SimpleRecipeTest" };
+            var recipe = new BaseRecipe() { Name = "SimpleRecipeTest" };
             RecipeAccessor.Instance.Insert(recipe);
             var recipes = RecipeAccessor.Instance.SelectAll().ToList();
             Assert.True(recipes.Count > 0);
             var getted = recipes.Single(_ => _.Id == recipe.Id);
             Assert.NotNull(getted);
-            Assert.True(getted.GetType() == typeof(SimpleRecipe));
+            Assert.True(getted.GetType() == typeof(BaseRecipe));
             //
             //
             RecipeAccessor.Instance.Delete(getted);
