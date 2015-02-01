@@ -19,20 +19,6 @@
     </div>
 </div>
 <div style="text-align: left; float: left">
-    <a href="@Url.Action("Index", "Recipes",2)">Рецепт дня</a>
+    <a href="@Url.Action("Index", "Recipes")">Рецепт дня</a>
     @*@Html.ActionLink("Пользователи",  "Index", "Recipes")*@
-</div>
-<div style="margin: auto; border: 3px solid burlywood; float: right">
-    <h2>Свежие рецепты</h2>
-    @foreach (var recipe in ViewBag.Entries)
-    {
-        <section>
-            <header>
-                <h3 style="text-align: left; position: inherit">@recipe.Name</h3>
-            </header>
-            <p>
-                @recipe.Description
-            </p>
-        </section>
-        }
 </div>

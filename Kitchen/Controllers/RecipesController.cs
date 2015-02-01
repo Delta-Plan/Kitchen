@@ -2,8 +2,6 @@
 using Database.Ingredients;
 using Database.Models;
 using Kitchen.Models;
-using common.Logging;
-using Database;
 using Database.Accessors;
 
 namespace Kitchen.Controllers
@@ -31,35 +29,24 @@ namespace Kitchen.Controllers
                     Name = "Сэндвич с сливочным сыром и лососем",
                     Description =
                         "Кофе в кемексе получается нежным и лишённым горечи, мягким и с яркой индивидуальностью.",
-                    Ingridients = new RecipieIngridients
+                    Ingridients = new[]
                         {
-                            Components = new[]
-                                {
-                                    new Component
+                                    new IngridientViewModel
                                         {
-                                            Ammount = 2,
-                                            Measurement = MeasureType.TeaSpoon,
-                                            ProductType = new ProductType
-                                                {
-                                                    DefaultMeasurement = MeasureType.TeaSpoon,
-                                                    Description = "обычный тип продукта",
-                                                    Name = "Солъ"
-                                                }
+                                            Ammount = "2",
+                                            MeasureName = MeasureType.TeaSpoon.ToString(),
+                                                    //Description = "обычный тип продукта",
+                                            Name = "Солъ"
                                         },
-                                    new Component
+                                     new IngridientViewModel
                                         {
-                                            Ammount = 1,
-                                            Measurement = MeasureType.Item,
-                                            ProductType = new ProductType
-                                                {
-                                                    DefaultMeasurement = MeasureType.AtTaste,
-                                                    Description = "не обычный тип продукта",
-                                                    Name = "Перец"
-                                                }
-                                        },
+                                            Ammount = "1",
+                                            MeasureName = MeasureType.AtTaste.ToString(),
+                                                    //Description = "не обычный тип продукта",
+                                            Name = "Перец"
+                                        }
+                                   
                                 }
-                        }
-
                 };
         }
 
@@ -88,6 +75,8 @@ namespace Kitchen.Controllers
             try
             {
                 var toSubmit = new BaseRecipe {Name = data["Name"], Description = data["Description"]};
+                var ingrName = data["IngridientName"];
+                var ingrAmm = data["IngridientAmmount"];
                 RecipeAccessor.Instance.Insert(toSubmit);
                 return Content("Рецепт успешно сохранён в книге");//RedirectToAction("Index");
             }

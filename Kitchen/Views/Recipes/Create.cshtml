@@ -2,30 +2,36 @@
 @{
     ViewBag.Title = "Добавление рецепта в книгу";
 }
-
-<h2>Опиши свой новый рецепт:</h2>
-<form method="post" action="">
-    <fieldset>
-        Как называется этот рецепт?
-        <br />
-        <input type="text" name="Name" maxlength="200" />
-        <br />
-        Какие в нём есть ингридиенты?
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" name="Ingr" maxlength="200" />
-                @Html.DropDownList("MeasureType", MeasureHelperTemp.ProductMeasureSelectList)
-            </div>
-        </div>
-        <br />
-        Как его приготовить?
-        <br />
-        <textarea name="Description" rows="10" cols="40">
+<div class="row">
+    <div class="span2"></div>
+    <div class="span9">
+        <h2>Опиши свой новый рецепт:</h2>
+        <form method="post" action="">
+            <fieldset>
+                Как называется этот рецепт?
+                <br />
+                <input type="text" name="Name" maxlength="200" />
+                <br />
+                Какие в нём есть ингридиенты?
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="text" name="IngridientName" maxlength="200" />
+                        <input type="number" name="IngridientAmmount"/>
+                        @Html.DropDownList("MeasureType", MeasureHelperTemp.ProductMeasureSelectList)
+                    </div>
+                </div>
+                <br />
+                Как его приготовить?
+                <br />
+                <textarea name="Description" rows="10" cols="40">
 </textarea>
-        <br />
-        
-        <br />
-        <input type="submit" value="Сохранить рецепт" />
+                <br />
 
-    </fieldset>
-</form>
+                <br />
+                <input type="submit" value="Сохранить рецепт" />
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="span1"></div>
+</div>

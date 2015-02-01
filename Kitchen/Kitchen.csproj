@@ -127,6 +127,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Auxillary\MeasureHelperTemp.cs" />
+    <Compile Include="Models\IngridientViewModel.cs" />
     <Compile Include="Models\SimpleRecipeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
