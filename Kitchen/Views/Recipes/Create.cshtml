@@ -2,32 +2,54 @@
 @{
     ViewBag.Title = "Добавление рецепта в книгу";
 }
+
 <div class="row">
     <div class="span2"></div>
     <div class="span9">
         <h2>Опиши свой новый рецепт:</h2>
         <form method="post" action="">
             <fieldset>
-                Как называется этот рецепт?
-                <br />
-                <input type="text" name="Name" maxlength="200" />
-                <br />
-                Какие в нём есть ингридиенты?
                 <div class="control-group">
+                    <label for="inptRecipeName" class="control-label">Как называется этот рецепт?</label>
                     <div class="controls">
-                        <input type="text" name="IngridientName" maxlength="200" />
-                        <input type="number" name="IngridientAmmount"/>
-                        @Html.DropDownList("MeasureType", MeasureHelperTemp.ProductMeasureSelectList)
+                        <input type="text" name="Name" id="inptRecipeName" maxlength="200" />
                     </div>
                 </div>
-                <br />
-                Как его приготовить?
-                <br />
-                <textarea name="Description" rows="10" cols="40">
-</textarea>
-                <br />
+                Какие в нём есть ингридиенты?
+                <table data-bind='visible: ingredients().length > 0' class="table">
+                    <thead>
+                        <tr>
+                            <th>Название продукта</th>
+                            <th>Количество</th>
+                            <th />
+                            <th />
+                        </tr>
+                    </thead>
+                    <tbody data-bind='foreach: ingredients'>
+                        <tr>
+                            <td style="border-top: transparent">
+                                <input type="text" name="IngridientName" maxlength="200" data-bind='value: name, uniqueName: true' /></td>
+                            <td style="border-top: transparent">
+                                <input type="number" data-bind='value: ammount, uniqueName: true' /></td>
+                            <td style="border-top: transparent">
+                                @Html.DropDownList("MeasureType", MeasureHelperTemp.ProductMeasureSelectList,new Dictionary<string, object> {{"data-bind","value: measure, uniqueName: true"}})
+                            </td>
+                            <td  style="border-top: transparent"><a href='#' data-bind='click: $root.removeIngredient'>Удалить</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button data-bind='click: addIngredient'>Добавить продукт</button>
+                <button data-bind='click: save'>Show me Json</button>
+                <button data-bind='enable: ingredients().length > 0' type='submit'>Submit</button>
+                <div class="control-group">
+                    <label for="txtDescription" class="control-label">Как его приготовить?</label>
+                    <div class="controls">
+                        <textarea name="Description" rows="10" cols="40" id="txtDescription"></textarea>
+                    </div>
+                    <br />
 
-                <br />
+                    <br />
+                </div>
                 <input type="submit" value="Сохранить рецепт" />
 
             </fieldset>
@@ -35,3 +57,35 @@
     </div>
     <div class="span1"></div>
 </div>
+<script type="text/javascript" language="javascript">
+    var IngredientModel = function (ingredients) {
+        var self = this;
+        self.ingredients = ko.observableArray(ingredients);
+
+        self.addIngredient = function () {
+            self.ingredients.push({
+                name: "",
+                ammount: 0,
+                measure: 1
+            });
+        };
+
+        self.removeIngredient = function (ingredient) {
+            self.ingredients.remove(ingredient);
+        };
+
+        self.save = function (form) {
+            alert("Could now transmit to server: " + ko.utils.stringifyJson(self.ingredients));
+            // To actually transmit to server as a regular form post, write this: ko.utils.postJson($("form")[0], self.gifts);
+        };
+    };
+
+    var viewModel = new IngredientModel([
+        { name: "Соль", ammount: 0, measure: 1 },
+        { name: "Хлеб", ammount: 10, measure: 0 }
+    ]);
+    ko.applyBindings(viewModel);
+
+    // Activate jQuery Validation
+    //$("form").validate({ submitHandler: viewModel.save });
+    </script>

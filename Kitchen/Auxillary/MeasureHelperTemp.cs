@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
 using System.Web.Mvc;
 using Database.Ingredients;
 
@@ -12,16 +16,20 @@ namespace Kitchen.Auxillary
         {
             get
             {
-                for (int i = 0; i < 3; i++)
+                return Enum.GetValues(typeof(MeasureType)).Cast<MeasureType>().Select(measure => new SelectListItem
                 {
-                    yield return new SelectListItem
-                    {
-                        Value = i.ToString(),
-                        Text = ((MeasureType)i).ToString(),
-                        Selected = (int) measureType == i
-                    };
-                }
+                    Value = ((int)measure).ToString(CultureInfo.InvariantCulture),
+                    Text = GetDescription(measure),
+                    Selected = measureType == measure
+                });
             }
+        }
+        //S.Rozhin need to some other generic class
+        private static string GetDescription(Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
+            return attribute == null ? value.ToString() : attribute.Description;
         }
     }
 }

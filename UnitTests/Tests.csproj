@@ -65,6 +65,10 @@
       <Project>{35576888-1F3C-42FA-9C76-6AC95DE7BA2D}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kitchen\Kitchen.csproj">
+      <Project>{020236f4-e020-4a55-8c9a-57f28044e640}</Project>
+      <Name>Kitchen</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />

@@ -5,33 +5,36 @@ namespace Database.Ingredients
     public enum MeasureType
     {
         [Description("По вкусу")]
-        AtTaste = 0,
+        AtTaste,
 
         [Description("Чайная ложка")]
-        TeaSpoon = 1,
+        TeaSpoon,
 
-        [Description("Большая ложка")]
-        SoupSpoon = 2,
+        [Description("Десертная ложка")]
+        DessertSpoon,
+
+        [Description("Столовая ложка")]
+        SoupSpoon,
 
         [Description("Стакан")]
-        Glass = 3,
+        Glass,
 
         [Description("Щепотка")]
-        Thimbleful = 4,
+        Thimbleful,
 
         [Description("Грамм")]
-        Gram = 5,
+        Gram,
 
         [Description("Килограмм")]
-        Kilo = 6,
+        Kilo,
 
         [Description("Милилитр")]
-        Milliliter = 7,
+        Milliliter,
 
         [Description("Литр")]
-        Liter = 8,
+        Liter,
 
         [Description("Штука")]
-        Item = 9
+        Item
     }
 }
